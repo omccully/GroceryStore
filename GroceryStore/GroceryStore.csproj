@@ -46,6 +46,7 @@
     <Compile Include="Markdowns\PriceMarkdown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specials\Eaches\BuyNForXEachesGroceryItemSpecial.cs" />
+    <Compile Include="Specials\Eaches\BuyNGetMDiscountedEachesGroceryItemSpecial.cs" />
     <Compile Include="Specials\Eaches\IEachesGroceryItemSpecial.cs" />
     <Compile Include="Stock\EachesGroceryItem.cs" />
   </ItemGroup>

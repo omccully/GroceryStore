@@ -33,6 +33,15 @@ namespace GroceryStoreTests.Specials.Eaches
 
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
             {
+                // a PriceMarkdownStub is used here to make sure
+                // that the special is using the EachesGroceryItem's 
+                // PurchasePrice instead of the OriginalPrice
+                // for the non-discounted items
+
+                // the PriceMarkdownStub provides a constant PurchasePrice
+                // I don't think it's worth it to make a fake 
+                // EachesGroceryItem class just to avoid retesting 
+                // the small amount of PurchasePrice accessor logic
                 Markdown = new PriceMarkdownStub(1.74M)
             };
 
