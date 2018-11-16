@@ -5,10 +5,10 @@ using GroceryStore.Stock;
 namespace GroceryStoreTests
 {
     [TestClass]
-    public class GroceryItemTests
+    public class EachesGroceryItemTests
     {
         [TestMethod]
-        public void EachesConstructor_SetsNameAndOriginalPrice()
+        public void Constructor_SetsNameAndOriginalPrice()
         {
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
 
@@ -17,7 +17,7 @@ namespace GroceryStoreTests
         }
 
         [TestMethod]
-        public void EachesMarkdownPrice_ReducesPurchasePrice()
+        public void MarkdownPrice_ReducesPurchasePrice()
         {
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
 
