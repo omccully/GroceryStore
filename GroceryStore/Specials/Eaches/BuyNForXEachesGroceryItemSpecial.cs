@@ -20,6 +20,8 @@ namespace GroceryStore.Specials.Eaches
 
         public decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder)
         {
+            if (itemOrder.Count < RequiredCount)
+                return itemOrder.Count * itemOrder.Item.PurchasePrice;
             return FixedPrice;
         }
     }
