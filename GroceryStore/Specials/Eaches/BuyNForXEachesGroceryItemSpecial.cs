@@ -25,9 +25,14 @@ namespace GroceryStore.Specials.Eaches
 
             if(itemOrder.Count % RequiredCount == 0)
                 return FixedPrice * (itemOrder.Count / RequiredCount);
-            
 
-            return FixedPrice;
+            int countDiscountApplied = itemOrder.Count / RequiredCount;
+            decimal costForDiscountedItems = countDiscountApplied * FixedPrice;
+
+            int nonDiscountedItemsCount = itemOrder.Count % RequiredCount;
+            decimal costForNondiscountedItems = nonDiscountedItemsCount * itemOrder.Item.PurchasePrice;
+
+            return costForDiscountedItems + costForNondiscountedItems;
         }
     }
 }
