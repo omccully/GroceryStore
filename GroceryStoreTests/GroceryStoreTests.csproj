@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cart\EachesGroceryItemOrderTests.cs" />
+    <Compile Include="Markdowns\PriceMarkdownStub.cs" />
+    <Compile Include="Markdowns\PriceMarkdownTests.cs" />
     <Compile Include="Specials\Eaches\BuyNForXEachesGroceryItemSpecialTest.cs" />
     <Compile Include="Stock\EachesGroceryItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
