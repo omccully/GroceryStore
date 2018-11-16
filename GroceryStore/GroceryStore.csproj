@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cart\EachesGroceryItemOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock\EachesGroceryItem.cs" />
   </ItemGroup>
