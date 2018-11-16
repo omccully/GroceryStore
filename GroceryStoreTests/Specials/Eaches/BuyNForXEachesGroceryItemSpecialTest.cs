@@ -40,5 +40,19 @@ namespace GroceryStoreTests.Specials.Eaches
 
             Assert.AreEqual(3.48M, special.CalculateNewPrice(itemOrder));
         }
+
+        [TestMethod]
+        public void CalculateNewCost_IsMultipleOfFixedPrice_WhenNotBuyingMultipleOfRequiredCount()
+        {
+            BuyNForXEachesGroceryItemSpecial special =
+                new BuyNForXEachesGroceryItemSpecial(3, 5.00M);
+
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
+
+            EachesGroceryItemOrder itemOrder =
+                new EachesGroceryItemOrder(item, 9);
+
+            Assert.AreEqual(15.00M, special.CalculateNewPrice(itemOrder));
+        }
     }
 }

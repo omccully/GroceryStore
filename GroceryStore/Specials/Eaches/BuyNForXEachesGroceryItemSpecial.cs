@@ -22,6 +22,11 @@ namespace GroceryStore.Specials.Eaches
         {
             if (itemOrder.Count < RequiredCount)
                 return itemOrder.Count * itemOrder.Item.PurchasePrice;
+
+            if(itemOrder.Count % RequiredCount == 0)
+                return FixedPrice * (itemOrder.Count / RequiredCount);
+            
+
             return FixedPrice;
         }
     }
