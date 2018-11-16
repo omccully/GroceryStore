@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GroceryStore.Stock;
+using GroceryStoreTests.Markdowns;
 
 namespace GroceryStoreTests
 {
@@ -17,14 +18,22 @@ namespace GroceryStoreTests
         }
 
         [TestMethod]
-        public void MarkdownPrice_ReducesPurchasePrice()
+        public void PurchasePrice_GetsResultFromMarkdown()
+        {
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
+            {
+                Markdown = new PriceMarkdownStub(1.50M)
+            };
+
+            Assert.AreEqual(1.50M, item.PurchasePrice);
+        }
+
+        [TestMethod]
+        public void PurchasePrice_UsesOriginalPrice_WhenNoMarkdown()
         {
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
 
-            item.Markdown = 0.20M;
-
-            Assert.AreEqual(1.69M, item.PurchasePrice);
+            Assert.AreEqual(1.89M, item.PurchasePrice);
         }
-
     }
 }

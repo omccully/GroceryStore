@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GroceryStore.Stock;
 using GroceryStore.Cart;
 using GroceryStore.Specials.Eaches;
+using GroceryStoreTests.Markdowns;
 
 namespace GroceryStoreTests.Specials.Eaches
 {
@@ -32,7 +33,7 @@ namespace GroceryStoreTests.Specials.Eaches
 
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
             {
-                Markdown = 0.15M
+                Markdown = new PriceMarkdownStub(1.74M)
             };
 
             EachesGroceryItemOrder itemOrder =
@@ -63,14 +64,14 @@ namespace GroceryStoreTests.Specials.Eaches
 
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
             {
-                Markdown = 0.15M
+                Markdown = new PriceMarkdownStub(1.74M)
             };
 
             EachesGroceryItemOrder itemOrder =
                 new EachesGroceryItemOrder(item, 5);
 
             // the first 3 should cost 5.00M
-            // the last 2 should cost (1.89-0.15) * 2 = 3.48
+            // the last 2 should cost (1.74M) * 2 = 3.48
             // total should be 8.48M
 
             Assert.AreEqual(8.48M, special.CalculateNewPrice(itemOrder));
