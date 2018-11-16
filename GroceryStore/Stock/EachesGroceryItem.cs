@@ -12,6 +12,16 @@ namespace GroceryStore.Stock
 
         public decimal OriginalPrice { get; set; }
 
+        public decimal Markdown { get; set; }
+
+        public decimal PurchasePrice
+        {
+            get
+            {
+                return OriginalPrice - Markdown;
+            }
+        }
+
         public EachesGroceryItem(string name, decimal originalPrice)
         {
             this.Name = name;

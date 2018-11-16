@@ -15,5 +15,16 @@ namespace GroceryStoreTests
             Assert.AreEqual("soup", item.Name);
             Assert.AreEqual(1.89M, item.OriginalPrice);
         }
+
+        [TestMethod]
+        public void EachesMarkdownPrice_ReducesPurchasePrice()
+        {
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
+
+            item.Markdown = 0.20M;
+
+            Assert.AreEqual(1.69M, item.PurchasePrice);
+        }
+
     }
 }
