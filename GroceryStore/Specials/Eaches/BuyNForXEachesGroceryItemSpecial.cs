@@ -20,12 +20,6 @@ namespace GroceryStore.Specials.Eaches
 
         public decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder)
         {
-            if (itemOrder.Count < RequiredCount)
-                return itemOrder.Count * itemOrder.Item.PurchasePrice;
-
-            if(itemOrder.Count % RequiredCount == 0)
-                return FixedPrice * (itemOrder.Count / RequiredCount);
-
             int countDiscountApplied = itemOrder.Count / RequiredCount;
             decimal costForDiscountedItems = countDiscountApplied * FixedPrice;
 
