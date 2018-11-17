@@ -2,10 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GroceryStore.Stock;
-using GroceryStore.Cart;
 using GroceryStore.Specials.Eaches;
-using GroceryStoreTests.Markdowns;
 
 namespace GroceryStoreTests.Specials.Eaches
 {
