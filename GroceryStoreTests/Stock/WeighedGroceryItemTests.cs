@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GroceryStore.Stock;
 using GroceryStoreTests.Markdowns;
+using GroceryStoreTests.Specials.Weighed;
 
 namespace GroceryStoreTests.Stock
 {
@@ -44,6 +45,17 @@ namespace GroceryStoreTests.Stock
             WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.00M);
 
             Assert.AreEqual(5.00M, bananas.CalculatePurchasePrice(2.5M));
+        }
+
+        [TestMethod]
+        public void CalculatePurchasePrice_AppliesSpecial_IfSpecialIsSet()
+        {
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.00M)
+            {
+                Special = new WeighedGroceryItemSpecialFake(1.50M)
+            };
+
+            Assert.AreEqual(7.50M, bananas.CalculatePurchasePrice(5));
         }
     }
 }

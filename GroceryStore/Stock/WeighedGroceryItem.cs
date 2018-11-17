@@ -1,4 +1,5 @@
 ﻿using GroceryStore.Markdowns;
+using GroceryStore.Specials.Weighed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace GroceryStore.Stock
             }
         }
 
+        public IWeighedGroceryItemSpecial Special { get; set; }
+
         public WeighedGroceryItem(string name, decimal originalPricePerUnit)
         {
             this.Name = name;
@@ -32,6 +35,8 @@ namespace GroceryStore.Stock
 
         public decimal CalculatePurchasePrice(decimal weight)
         {
+            if (Special != null)
+                return Special.CalculateNewPrice(PurchasePricePerUnit, weight);
             return PurchasePricePerUnit * weight;
         }
     }
