@@ -29,5 +29,13 @@ namespace GroceryStoreTests.Stock
 
             Assert.AreEqual(1.50M, bananas.PurchasePricePerUnit);
         }
+        
+        [TestMethod]
+        public void PurchasePrice_UsesOriginalPrice_WhenNoMarkdown()
+        {
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
+
+            Assert.AreEqual(2.38M, bananas.PurchasePricePerUnit);
+        }
     }
 }
