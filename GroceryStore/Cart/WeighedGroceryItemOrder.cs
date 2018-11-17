@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Cart
 {
-    public class WeighedGroceryItemOrder
+    public class WeighedGroceryItemOrder : IGroceryItemOrder
     {
         public IWeighedGroceryItem Item { get; private set; }
         public decimal Weight { get; set; }

@@ -18,5 +18,17 @@ namespace GroceryStoreTests.Cart
             cart.Orders.Add(eachesOrder);
             Assert.AreEqual(1, cart.Orders.Count);
         }
+
+        [TestMethod]
+        public void Orders_CanAddWeighedItem()
+        {
+            WeighedGroceryItemOrder weighedOrder = new WeighedGroceryItemOrder(null, 3M);
+
+            GroceryCart cart = new GroceryCart();
+
+            Assert.AreEqual(0, cart.Orders.Count);
+            cart.Orders.Add(weighedOrder);
+            Assert.AreEqual(1, cart.Orders.Count);
+        }
     }
 }

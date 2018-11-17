@@ -7,7 +7,7 @@ using GroceryStore.Stock;
 
 namespace GroceryStore.Cart
 {
-    public class EachesGroceryItemOrder
+    public class EachesGroceryItemOrder : IGroceryItemOrder
     {
         public IEachesGroceryItem Item { get; private set; }
         public int Count { get; set; }

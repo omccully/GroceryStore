@@ -8,11 +8,11 @@ namespace GroceryStore.Cart
 {
     public class GroceryCart
     {
-        public List<EachesGroceryItemOrder> Orders { get; set; }
+        public List<IGroceryItemOrder> Orders { get; set; }
 
         public GroceryCart()
         {
-            Orders = new List<EachesGroceryItemOrder>();
+            Orders = new List<IGroceryItemOrder>();
         }
     }
 }
