@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Cart\EachesGroceryItemOrderTests.cs" />
     <Compile Include="Cart\GroceryCartTests.cs" />
+    <Compile Include="Cart\GroceryItemOrderStub.cs" />
     <Compile Include="Cart\WeighedGroceryItemOrderTests.cs" />
     <Compile Include="Markdowns\PriceMarkdownStub.cs" />
     <Compile Include="Markdowns\PriceMarkdownTests.cs" />

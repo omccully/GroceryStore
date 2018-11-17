@@ -10,6 +10,14 @@ namespace GroceryStore.Cart
     {
         public List<IGroceryItemOrder> Orders { get; set; }
 
+        public decimal TotalPrice
+        {
+            get
+            {
+                return Orders.Sum(order => order.Price);
+            }
+        }
+
         public GroceryCart()
         {
             Orders = new List<IGroceryItemOrder>();
