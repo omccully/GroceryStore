@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Stock
 {
-    public class WeighedGroceryItem
+    public class WeighedGroceryItem : IWeighedGroceryItem
     {
         public string Name { get; private set; }
 
