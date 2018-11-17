@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryStore.Markdowns;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,23 @@ namespace GroceryStore.Stock
     {
         public string Name { get; private set; }
 
-        public decimal OriginalPrice { get; set; }
+        public decimal OriginalPricePerUnit { get; set; }
 
-        public WeighedGroceryItem(string name, decimal originalPrice)
+        public IPriceMarkdown Markdown { get; set; }
+
+        public decimal PurchasePricePerUnit
+        {
+            get
+            {
+                if (Markdown == null) return OriginalPricePerUnit;
+                return Markdown.CalculateNewPrice(OriginalPricePerUnit);
+            }
+        }
+
+        public WeighedGroceryItem(string name, decimal originalPricePerUnit)
         {
             this.Name = name;
-            this.OriginalPrice = originalPrice;
+            this.OriginalPricePerUnit = originalPricePerUnit;
         }
     }
 }
