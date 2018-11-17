@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Stock
 {
-    public class EachesGroceryItem
+    public class EachesGroceryItem : IEachesGroceryItem
     {
         public string Name { get; private set; }
 

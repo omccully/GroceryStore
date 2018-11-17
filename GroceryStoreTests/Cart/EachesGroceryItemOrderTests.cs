@@ -24,13 +24,11 @@ namespace GroceryStoreTests.Cart
         [TestMethod]
         public void Price_CalculatesUsingPurchasePriceAndSpecials()
         {
-            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
-            {
-                Special = new EachesGroceryItemSpecialFake(1.00M)
-            };
+            EachesGroceryItem item = new EachesGroceryItem("soup", 2.00M);
+
             EachesGroceryItemOrder order = new EachesGroceryItemOrder(item, 3);
 
-            Assert.AreEqual(3.00M, order.Price);
+            Assert.AreEqual(6.00M, order.Price);
 
         }
     }

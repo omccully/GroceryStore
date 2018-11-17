@@ -9,20 +9,18 @@ namespace GroceryStore.Cart
 {
     public class EachesGroceryItemOrder
     {
-        public EachesGroceryItem Item { get; private set; }
+        public IEachesGroceryItem Item { get; private set; }
         public int Count { get; set; }
 
         public decimal Price
         {
             get
             {
-                if (Item.Special != null)
-                    return Item.Special.CalculateNewPrice(Item.PurchasePrice, Count);
-                return Item.PurchasePrice * Count;
+                return Item.CalculatePurchasePrice(Count);
             }
         }
 
-        public EachesGroceryItemOrder(EachesGroceryItem item, int count = 1)
+        public EachesGroceryItemOrder(IEachesGroceryItem item, int count = 1)
         {
             this.Item = item;
             this.Count = count;

@@ -50,6 +50,7 @@
     <Compile Include="Specials\Eaches\IEachesGroceryItemSpecial.cs" />
     <Compile Include="Specials\Eaches\LimitedEachesGroceryItemSpecial.cs" />
     <Compile Include="Stock\EachesGroceryItem.cs" />
+    <Compile Include="Stock\IEachesGroceryItem.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
