@@ -29,5 +29,10 @@ namespace GroceryStore.Stock
             this.Name = name;
             this.OriginalPricePerUnit = originalPricePerUnit;
         }
+
+        public decimal CalculatePurchasePrice(decimal weight)
+        {
+            return PurchasePricePerUnit * weight;
+        }
     }
 }
