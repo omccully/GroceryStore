@@ -1,4 +1,5 @@
 ﻿using GroceryStore.Markdowns;
+using GroceryStore.Specials.Eaches;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace GroceryStore.Stock
                 return Markdown.CalculateNewPrice(OriginalPrice);
             }
         }
+
+        public IEachesGroceryItemSpecial Special { get; set; }
 
         public EachesGroceryItem(string name, decimal originalPrice)
         {

@@ -12,6 +12,15 @@ namespace GroceryStore.Cart
         public EachesGroceryItem Item { get; private set; }
         public int Count { get; set; }
 
+        public decimal Price
+        {
+            get
+            {
+                if (Item.Special != null) return Item.Special.CalculateNewPrice(this);
+                return Item.PurchasePrice * Count;
+            }
+        }
+
         public EachesGroceryItemOrder(EachesGroceryItem item, int count = 1)
         {
             this.Item = item;
