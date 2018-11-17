@@ -32,5 +32,12 @@ namespace GroceryStore.Stock
             this.Name = name;
             this.OriginalPrice = originalPrice;
         }
+
+        public decimal CalculatePurchasePrice(int count)
+        {
+            if (Special != null)
+                return Special.CalculateNewPrice(PurchasePrice, count);
+            return 0M;
+        }
     }
 }

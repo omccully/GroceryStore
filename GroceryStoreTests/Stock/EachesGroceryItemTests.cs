@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GroceryStore.Stock;
 using GroceryStoreTests.Markdowns;
+using GroceryStoreTests.Specials.Eaches;
 
 namespace GroceryStoreTests
 {
@@ -34,6 +35,17 @@ namespace GroceryStoreTests
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
 
             Assert.AreEqual(1.89M, item.PurchasePrice);
+        }
+
+        [TestMethod]
+        public void CalculatePurchasePrice_AppliesSpecial_IfSpecialIsSet()
+        {
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
+            {
+                Special = new EachesGroceryItemSpecialFake(1.00M)
+            };
+
+            Assert.AreEqual(5.00M, item.CalculatePurchasePrice(5));
         }
     }
 }
