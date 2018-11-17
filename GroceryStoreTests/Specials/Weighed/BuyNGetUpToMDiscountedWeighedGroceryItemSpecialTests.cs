@@ -32,5 +32,19 @@ namespace GroceryStoreTests.Specials.Weighed
 
             Assert.AreEqual(5.25M, special.CalculateNewPrice(1.00M, 6.0M));
         }
+
+        [TestMethod]
+        public void CalculateNewPrice_ExtraWeightIsDiscounted_WhenBuyingAnUnevenAmount()
+        {
+            // buy up to 3.0 units, get up to 3.0 units 25% off
+            BuyNGetUpToMDiscountedWeighedGroceryItemSpecial special =
+                new BuyNGetUpToMDiscountedWeighedGroceryItemSpecial(3.0M, 25M);
+
+            // 3.0 * 1.00 = 3.00
+            // 2.0 * 0.75 = 1.50
+            // = 4.50
+
+            Assert.AreEqual(4.50M, special.CalculateNewPrice(1.00M, 5.00M));
+        }
     }
 }

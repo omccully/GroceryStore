@@ -22,21 +22,24 @@ namespace GroceryStore.Specials.Weighed
         {
             decimal discountPrice = pricePerUnit * DiscountMultiplier;
 
-            if (itemWeight % WeightPerFullDeal == 0)
-            {
-                decimal fullDealCount = Math.Round(itemWeight / WeightPerFullDeal);
+            decimal fullDealCount = Math.Floor(itemWeight / WeightPerFullDeal);
 
-                decimal fullDealNondiscountedWeight = RequiredWeight * fullDealCount;
-                decimal fullDealNondiscountedPrice = fullDealNondiscountedWeight * pricePerUnit;
+            decimal extraWeight = itemWeight - (fullDealCount * WeightPerFullDeal);
+            decimal extraNondiscountedWeight = Math.Min(extraWeight, RequiredWeight);
 
-                decimal fullDealDiscountedWeight = fullDealNondiscountedWeight;
-                decimal fullDealDiscountedPrice = fullDealDiscountedWeight * discountPrice;
+            decimal fullDealNondiscountedWeight = RequiredWeight * fullDealCount;
+            //decimal fullDealNondiscountedPrice = fullDealNondiscountedWeight * pricePerUnit;
 
+            decimal extraDiscountedWeight = extraWeight - extraNondiscountedWeight;
+            decimal fullDealDiscountedWeight = fullDealNondiscountedWeight;
+            //decimal fullDealDiscountedPrice = fullDealDiscountedWeight * discountPrice;
 
-                return fullDealNondiscountedPrice + fullDealDiscountedPrice;
-            }
-            
-            return pricePerUnit * itemWeight;
+            decimal nondiscountedPrice = 
+                (extraNondiscountedWeight + fullDealNondiscountedWeight) * pricePerUnit;
+            decimal discountedPrice =
+                (extraDiscountedWeight + fullDealDiscountedWeight) * discountPrice;
+
+            return nondiscountedPrice + discountedPrice;
         }
 
         decimal WeightPerFullDeal
