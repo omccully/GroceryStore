@@ -19,7 +19,7 @@ namespace GroceryStoreTests.Specials.Eaches
         }
 
         [TestMethod]
-        public void CalculateNewCost_UsesMarkdownPrice_WhenNotBuyingEnough()
+        public void CalculateNewCost_UsesRegularPrice_WhenNotBuyingEnough()
         {
             BuyNForXEachesGroceryItemSpecial special =
                 new BuyNForXEachesGroceryItemSpecial(3, 5.00M);
@@ -28,7 +28,7 @@ namespace GroceryStoreTests.Specials.Eaches
         }
 
         [TestMethod]
-        public void CalculateNewCost_IsMultipleOfFixedPrice_WhenNotBuyingMultipleOfRequiredCount()
+        public void CalculateNewCost_IsMultipleOfFixedPrice_WhenBuyingMultipleOfRequiredCount()
         {
             BuyNForXEachesGroceryItemSpecial special =
                 new BuyNForXEachesGroceryItemSpecial(3, 5.00M);
@@ -37,7 +37,7 @@ namespace GroceryStoreTests.Specials.Eaches
         }
 
         [TestMethod]
-        public void CalculateNewCost_UsesMarkdownPriceForOddItems_WhenNotBuyingAmountThatIsNotAMultipleOfRequiredCount()
+        public void CalculateNewCost_UsesRegularPriceForOddItems_WhenNotBuyingAmountThatIsNotAMultipleOfRequiredCount()
         {
             BuyNForXEachesGroceryItemSpecial special =
                 new BuyNForXEachesGroceryItemSpecial(3, 5.00M);

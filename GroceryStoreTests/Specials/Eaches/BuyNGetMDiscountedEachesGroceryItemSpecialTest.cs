@@ -10,7 +10,7 @@ namespace GroceryStoreTests.Specials.Eaches
     public class BuyNGetMDiscountedEachesGroceryItemSpecialTest
     {
         [TestMethod]
-        public void CalculateNewCost_UsesMarkdownPrice_WhenNotBuyingEnough()
+        public void CalculateNewCost_UsesRegularPrice_WhenNotBuyingEnough()
         {
             BuyNGetMDiscountedEachesGroceryItemSpecial special =
                 new BuyNGetMDiscountedEachesGroceryItemSpecial(4, 1, 100M);

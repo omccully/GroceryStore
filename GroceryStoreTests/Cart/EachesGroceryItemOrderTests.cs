@@ -22,7 +22,7 @@ namespace GroceryStoreTests.Cart
         }
 
         [TestMethod]
-        public void Price_CalculatesUsingPurchasePriceAndSpecials()
+        public void Price_CalculatesUsingItemMethod()
         {
             EachesGroceryItem item = new EachesGroceryItem("soup", 2.00M);
 
