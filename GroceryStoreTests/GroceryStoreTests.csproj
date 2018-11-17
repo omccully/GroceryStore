@@ -56,6 +56,7 @@
     <Compile Include="Specials\Eaches\BuyNGetMDiscountedEachesGroceryItemSpecialTest.cs" />
     <Compile Include="Specials\Eaches\EachesGroceryItemSpecialFake.cs" />
     <Compile Include="Specials\Eaches\LimitedEachesGroceryItemSpecialTests.cs" />
+    <Compile Include="Specials\Weighed\BuyNGetUpToMDiscountedWeighedGroceryItemSpecialTests.cs" />
     <Compile Include="Stock\EachesGroceryItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
