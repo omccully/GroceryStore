@@ -57,5 +57,15 @@ namespace GroceryStoreTests.Stock
 
             Assert.AreEqual(7.50M, bananas.CalculatePurchasePrice(5));
         }
+
+        public void CalculatePurchasePrice_UsesPurchasePrice_IfMarkdownIsSetButSpecialIsNotSet()
+        {
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.00M)
+            {
+                Markdown = new PriceMarkdownStub(1.50M)
+            };
+
+            Assert.AreEqual(7.50M, bananas.CalculatePurchasePrice(5));
+        }
     }
 }
