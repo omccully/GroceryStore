@@ -20,26 +20,37 @@ namespace GroceryStore.Specials.Weighed
 
         public decimal CalculateNewPrice(decimal pricePerUnit, decimal itemWeight)
         {
-            decimal discountPrice = pricePerUnit * DiscountMultiplier;
+            return CalculateNondiscountedTotalPrice(pricePerUnit, itemWeight) +
+               CalculateDiscountedTotalPrice(pricePerUnit, itemWeight);
+        }
 
+        public decimal CalculateNondiscountedTotalPrice(decimal pricePerUnit, decimal itemWeight)
+        {
+            decimal nondiscountedWeight = CalculateNondiscountedWeight(itemWeight);
+            return nondiscountedWeight * pricePerUnit;
+        }
+
+        decimal CalculateDiscountedTotalPrice(decimal pricePerUnit, decimal itemWeight)
+        {
+            decimal discountedPrice = pricePerUnit * DiscountMultiplier;
+            decimal discountedWeight = CalculateDiscountedWeight(itemWeight);
+            return discountedWeight * discountedPrice;
+        }
+
+        public decimal CalculateDiscountedWeight(decimal itemWeight)
+        {
+            return itemWeight - CalculateNondiscountedWeight(itemWeight);
+        }
+
+        public decimal CalculateNondiscountedWeight(decimal itemWeight)
+        {
             decimal fullDealCount = Math.Floor(itemWeight / WeightPerFullDeal);
-
             decimal extraWeight = itemWeight - (fullDealCount * WeightPerFullDeal);
-            decimal extraNondiscountedWeight = Math.Min(extraWeight, RequiredWeight);
 
             decimal fullDealNondiscountedWeight = RequiredWeight * fullDealCount;
-            //decimal fullDealNondiscountedPrice = fullDealNondiscountedWeight * pricePerUnit;
+            decimal extraNondiscountedWeight = Math.Min(extraWeight, RequiredWeight);
 
-            decimal extraDiscountedWeight = extraWeight - extraNondiscountedWeight;
-            decimal fullDealDiscountedWeight = fullDealNondiscountedWeight;
-            //decimal fullDealDiscountedPrice = fullDealDiscountedWeight * discountPrice;
-
-            decimal nondiscountedPrice = 
-                (extraNondiscountedWeight + fullDealNondiscountedWeight) * pricePerUnit;
-            decimal discountedPrice =
-                (extraDiscountedWeight + fullDealDiscountedWeight) * discountPrice;
-
-            return nondiscountedPrice + discountedPrice;
+            return fullDealNondiscountedWeight + extraNondiscountedWeight;
         }
 
         decimal WeightPerFullDeal
