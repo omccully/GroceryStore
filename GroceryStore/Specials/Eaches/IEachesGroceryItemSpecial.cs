@@ -9,6 +9,6 @@ namespace GroceryStore.Specials.Eaches
 {
     public interface IEachesGroceryItemSpecial
     {
-        decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder);
+        decimal CalculateNewPrice(decimal pricePerItem, int itemCount);
     }
 }

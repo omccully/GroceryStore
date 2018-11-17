@@ -18,13 +18,13 @@ namespace GroceryStore.Specials.Eaches
             this.FixedPrice = fixedPrice;
         }
 
-        public decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder)
+        public decimal CalculateNewPrice(decimal pricePerItem, int itemCount)
         {
-            int countDiscountApplied = itemOrder.Count / RequiredCount;
+            int countDiscountApplied = itemCount / RequiredCount;
             decimal costForDiscountedItems = countDiscountApplied * FixedPrice;
 
-            int nonDiscountedItemsCount = itemOrder.Count % RequiredCount;
-            decimal costForNondiscountedItems = nonDiscountedItemsCount * itemOrder.Item.PurchasePrice;
+            int nonDiscountedItemsCount = itemCount % RequiredCount;
+            decimal costForNondiscountedItems = nonDiscountedItemsCount * pricePerItem;
 
             return costForDiscountedItems + costForNondiscountedItems;
         }

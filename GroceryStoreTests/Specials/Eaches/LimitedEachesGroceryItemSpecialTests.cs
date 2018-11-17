@@ -21,14 +21,10 @@ namespace GroceryStoreTests.Specials.Eaches
             LimitedEachesGroceryItemSpecial special =
                 new LimitedEachesGroceryItemSpecial(innerSpecial, 5);
 
-            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
-            EachesGroceryItemOrder itemOrder =
-                new EachesGroceryItemOrder(item, 7);
-
             // first 5 should be 1.00 each = 5.00
             // last 2 should be at 1.89 = 3.78
             // total should be 8.78
-            Assert.AreEqual(8.78M, special.CalculateNewPrice(itemOrder));
+            Assert.AreEqual(8.78M, special.CalculateNewPrice(1.89M, 7));
         }
 
         [TestMethod]
@@ -41,11 +37,7 @@ namespace GroceryStoreTests.Specials.Eaches
             LimitedEachesGroceryItemSpecial special =
                 new LimitedEachesGroceryItemSpecial(innerSpecial, 5);
 
-            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
-            EachesGroceryItemOrder itemOrder =
-                new EachesGroceryItemOrder(item, 3);
-
-            Assert.AreEqual(3.00M, special.CalculateNewPrice(itemOrder));
+            Assert.AreEqual(3.00M, special.CalculateNewPrice(1.89M, 3));
         }
 
         [TestMethod]
@@ -58,11 +50,7 @@ namespace GroceryStoreTests.Specials.Eaches
             LimitedEachesGroceryItemSpecial special =
                 new LimitedEachesGroceryItemSpecial(innerSpecial, 5);
 
-            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
-            EachesGroceryItemOrder itemOrder =
-                new EachesGroceryItemOrder(item, 5);
-
-            Assert.AreEqual(5.00M, special.CalculateNewPrice(itemOrder));
+            Assert.AreEqual(5.00M, special.CalculateNewPrice(1.89M, 5));
         }
     }
 }

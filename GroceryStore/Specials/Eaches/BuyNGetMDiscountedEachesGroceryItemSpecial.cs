@@ -20,13 +20,13 @@ namespace GroceryStore.Specials.Eaches
             this.DiscountPercentage = discountPercentage;
         }
 
-        public decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder)
+        public decimal CalculateNewPrice(decimal pricePerItem, int itemCount)
         {
-            decimal discountedItemsPrice = CaculateDiscountedItemCount(itemOrder.Count) *
-                (itemOrder.Item.PurchasePrice * DiscountMultiplier);
+            decimal discountedItemsPrice = CaculateDiscountedItemCount(itemCount) *
+                (pricePerItem * DiscountMultiplier);
 
-            decimal nondiscountedItemsPrice = CaculateNondiscountedItemCount(itemOrder.Count) *
-                itemOrder.Item.PurchasePrice;
+            decimal nondiscountedItemsPrice = CaculateNondiscountedItemCount(itemCount) *
+                pricePerItem;
 
             return discountedItemsPrice + nondiscountedItemsPrice;
         }

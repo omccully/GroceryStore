@@ -18,16 +18,16 @@ namespace GroceryStore.Specials.Eaches
             this.Limit = limit;
         }
 
-        public decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder)
+        public decimal CalculateNewPrice(decimal pricePerItem, int itemCount)
         {
-            int numItemsToApplySpecialTo = Math.Min(Limit, itemOrder.Count);
-            EachesGroceryItemOrder splitOrder = 
-                new EachesGroceryItemOrder(itemOrder.Item, numItemsToApplySpecialTo);
-            decimal priceOfItemsWithSpecialApplied = InnerSpecial.CalculateNewPrice(splitOrder);
+            int numItemsToApplySpecialTo = Math.Min(Limit, itemCount);
 
-            int numItemsNotToApplySpecialTo = itemOrder.Count - numItemsToApplySpecialTo;
+            decimal priceOfItemsWithSpecialApplied = 
+                InnerSpecial.CalculateNewPrice(pricePerItem, numItemsToApplySpecialTo);
+
+            int numItemsNotToApplySpecialTo = itemCount - numItemsToApplySpecialTo;
             decimal priceOfItemsWithoutSpecialApplied = 
-                numItemsNotToApplySpecialTo * itemOrder.Item.PurchasePrice;
+                numItemsNotToApplySpecialTo * pricePerItem;
 
             return priceOfItemsWithSpecialApplied + priceOfItemsWithoutSpecialApplied;
         }

@@ -16,7 +16,8 @@ namespace GroceryStore.Cart
         {
             get
             {
-                if (Item.Special != null) return Item.Special.CalculateNewPrice(this);
+                if (Item.Special != null)
+                    return Item.Special.CalculateNewPrice(Item.PurchasePrice, Count);
                 return Item.PurchasePrice * Count;
             }
         }

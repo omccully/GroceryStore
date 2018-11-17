@@ -17,9 +17,9 @@ namespace GroceryStoreTests.Specials.Eaches
             this.FixedPrice = fixedPrice;
         }
 
-        public decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder)
+        public decimal CalculateNewPrice(decimal pricePerItem, int itemCount)
         {
-            return itemOrder.Count * FixedPrice;
+            return itemCount * FixedPrice;
         }
     }
 }
