@@ -59,6 +59,7 @@
     <Compile Include="Specials\Weighed\BuyNGetUpToMDiscountedWeighedGroceryItemSpecialTests.cs" />
     <Compile Include="Stock\EachesGroceryItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stock\WeighedGroceryItemTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
