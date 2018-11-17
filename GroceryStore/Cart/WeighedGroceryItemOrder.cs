@@ -9,10 +9,18 @@ namespace GroceryStore.Cart
 {
     public class WeighedGroceryItemOrder
     {
-        public WeighedGroceryItem Item { get; private set; }
+        public IWeighedGroceryItem Item { get; private set; }
         public decimal Weight { get; set; }
 
-        public WeighedGroceryItemOrder(WeighedGroceryItem item, decimal weight)
+        public decimal Price
+        {
+            get
+            {
+                return Item.CalculatePurchasePrice(Weight);
+            }
+        }
+
+        public WeighedGroceryItemOrder(IWeighedGroceryItem item, decimal weight)
         {
             this.Item = item;
             this.Weight = weight;
