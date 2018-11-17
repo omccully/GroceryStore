@@ -22,46 +22,57 @@ namespace GroceryStore.Specials.Eaches
 
         public decimal CalculateNewPrice(EachesGroceryItemOrder itemOrder)
         {
-            if (itemOrder.Count < RequiredCount)
-                return itemOrder.Count * itemOrder.Item.PurchasePrice;
+            decimal discountedItemsPrice = CaculateDiscountedItemCount(itemOrder.Count) *
+                (itemOrder.Item.PurchasePrice * DiscountMultiplier);
 
-            int itemsPerFullDeal = (RequiredCount + DiscountedCount);
-            int numerOfFullDeals = itemOrder.Count / itemsPerFullDeal;
-            
+            decimal nondiscountedItemsPrice = CaculateNondiscountedItemCount(itemOrder.Count) *
+                itemOrder.Item.PurchasePrice;
 
-            decimal discountPrice = itemOrder.Item.PurchasePrice * DiscountMultiplier;
-            decimal discountedItems = numerOfFullDeals * DiscountedCount;
-            decimal totalDiscountedPrice = discountPrice * discountedItems;
-
-            decimal nondiscountedItems = numerOfFullDeals * RequiredCount;
-            decimal totalNondiscountedPrice = nondiscountedItems * itemOrder.Item.PurchasePrice;
-
-            if (itemOrder.Count % itemsPerFullDeal == 0)
-            {
-                return totalDiscountedPrice + totalNondiscountedPrice;
-            }
-
-            int remainingItemsCount = itemOrder.Count % itemsPerFullDeal;
-            decimal remainingItemsPrice = remainingItemsCount * itemOrder.Item.PurchasePrice;
-
-            if(DiscountedItemsAreFree)
-            {
-                // then the customer doesn't HAVE to take all of the 
-                // free items offered to them
-                int RemainingItemsBeingCharged = Math.Min(remainingItemsCount, RequiredCount);
-                remainingItemsPrice = RemainingItemsBeingCharged * itemOrder.Item.PurchasePrice;
-            }
-
-            totalNondiscountedPrice += remainingItemsPrice;
-
-            return totalDiscountedPrice + totalNondiscountedPrice;
+            return discountedItemsPrice + nondiscountedItemsPrice;
         }
+
+        int CaculateDiscountedItemCount(int orderedItemsCount)
+        {
+            return orderedItemsCount - CaculateNondiscountedItemCount(orderedItemsCount);
+        }
+
+        int CaculateNondiscountedItemCount(int orderedItemsCount)
+        {
+            int remainingItemCount;
+            int numberOfFullDeals = CalculateNumberOfFullDeals(orderedItemsCount, out remainingItemCount);
+            int nondiscountedItemsFromFullDeals = numberOfFullDeals * RequiredCount;
+
+            // if DiscountedItemsAreFree, then the customer doesn't HAVE 
+            // to take all of the free items offered to them,
+            // so charge them for a maximum of RequiredCount from the remaining items
+            // else, charge the customer the full price for the remaining items
+            int nondiscountedItemsFromRemaining =
+                DiscountedItemsAreFree ? Math.Min(RequiredCount, remainingItemCount) : remainingItemCount;
+
+            return nondiscountedItemsFromFullDeals + nondiscountedItemsFromRemaining;
+        }
+
+        int CalculateNumberOfFullDeals(int orderedItemsCount, out int remainingItemsCount)
+        {
+            remainingItemsCount = orderedItemsCount % ItemsPerFullDeal;
+
+            return orderedItemsCount / ItemsPerFullDeal;
+        }
+        
 
         bool DiscountedItemsAreFree
         {
             get
             {
                 return DiscountPercentage == 100M;
+            }
+        }
+
+        int ItemsPerFullDeal
+        {
+            get
+            {
+                return (RequiredCount + DiscountedCount);
             }
         }
 
