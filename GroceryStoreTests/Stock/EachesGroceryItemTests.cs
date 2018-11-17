@@ -4,7 +4,7 @@ using GroceryStore.Stock;
 using GroceryStoreTests.Markdowns;
 using GroceryStoreTests.Specials.Eaches;
 
-namespace GroceryStoreTests
+namespace GroceryStoreTests.Stock
 {
     [TestClass]
     public class EachesGroceryItemTests
