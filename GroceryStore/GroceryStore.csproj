@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cart\EachesGroceryItemOrder.cs" />
+    <Compile Include="Cart\WeighedGroceryItemOrder.cs" />
     <Compile Include="Markdowns\IPriceMarkdown.cs" />
     <Compile Include="Markdowns\PriceMarkdown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
