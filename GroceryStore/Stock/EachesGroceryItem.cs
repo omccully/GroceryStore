@@ -37,7 +37,7 @@ namespace GroceryStore.Stock
         {
             if (Special != null)
                 return Special.CalculateNewPrice(PurchasePrice, count);
-            return 0M;
+            return PurchasePrice * count;
         }
     }
 }
