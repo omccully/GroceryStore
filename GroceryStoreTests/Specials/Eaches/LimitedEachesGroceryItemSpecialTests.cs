@@ -30,5 +30,39 @@ namespace GroceryStoreTests.Specials.Eaches
             // total should be 8.78
             Assert.AreEqual(8.78M, special.CalculateNewPrice(itemOrder));
         }
+
+        [TestMethod]
+        public void CalculateNewPrice_AppliesInnerSpecialToAllItems_WhenNotEnoughItemsAreBought()
+        {
+            // $1 per item
+            EachesGroceryItemSpecialFake innerSpecial =
+                new EachesGroceryItemSpecialFake(1.00M);
+
+            LimitedEachesGroceryItemSpecial special =
+                new LimitedEachesGroceryItemSpecial(innerSpecial, 5);
+
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
+            EachesGroceryItemOrder itemOrder =
+                new EachesGroceryItemOrder(item, 3);
+
+            Assert.AreEqual(3.00M, special.CalculateNewPrice(itemOrder));
+        }
+
+        [TestMethod]
+        public void CalculateNewPrice_AppliesInnerSpecialToAllItems_WhenExactAmountOfItemsAreBought()
+        {
+            // $1 per item
+            EachesGroceryItemSpecialFake innerSpecial =
+                new EachesGroceryItemSpecialFake(1.00M);
+
+            LimitedEachesGroceryItemSpecial special =
+                new LimitedEachesGroceryItemSpecial(innerSpecial, 5);
+
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
+            EachesGroceryItemOrder itemOrder =
+                new EachesGroceryItemOrder(item, 5);
+
+            Assert.AreEqual(5.00M, special.CalculateNewPrice(itemOrder));
+        }
     }
 }
