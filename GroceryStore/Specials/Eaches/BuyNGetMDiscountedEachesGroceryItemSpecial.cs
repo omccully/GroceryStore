@@ -44,9 +44,25 @@ namespace GroceryStore.Specials.Eaches
             int remainingItemsCount = itemOrder.Count % itemsPerFullDeal;
             decimal remainingItemsPrice = remainingItemsCount * itemOrder.Item.PurchasePrice;
 
+            if(DiscountedItemsAreFree)
+            {
+                // then the customer doesn't HAVE to take all of the 
+                // free items offered to them
+                int RemainingItemsBeingCharged = Math.Min(remainingItemsCount, RequiredCount);
+                remainingItemsPrice = RemainingItemsBeingCharged * itemOrder.Item.PurchasePrice;
+            }
+
             totalNondiscountedPrice += remainingItemsPrice;
 
             return totalDiscountedPrice + totalNondiscountedPrice;
+        }
+
+        bool DiscountedItemsAreFree
+        {
+            get
+            {
+                return DiscountPercentage == 100M;
+            }
         }
 
         decimal DiscountMultiplier
