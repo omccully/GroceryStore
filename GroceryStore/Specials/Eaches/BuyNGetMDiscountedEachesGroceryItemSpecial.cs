@@ -25,22 +25,28 @@ namespace GroceryStore.Specials.Eaches
             if (itemOrder.Count < RequiredCount)
                 return itemOrder.Count * itemOrder.Item.PurchasePrice;
 
-            int saleItems = (RequiredCount + DiscountedCount);
-            if (itemOrder.Count % saleItems == 0)
+            int itemsPerFullDeal = (RequiredCount + DiscountedCount);
+            int numerOfFullDeals = itemOrder.Count / itemsPerFullDeal;
+            
+
+            decimal discountPrice = itemOrder.Item.PurchasePrice * DiscountMultiplier;
+            decimal discountedItems = numerOfFullDeals * DiscountedCount;
+            decimal totalDiscountedPrice = discountPrice * discountedItems;
+
+            decimal nondiscountedItems = numerOfFullDeals * RequiredCount;
+            decimal totalNondiscountedPrice = nondiscountedItems * itemOrder.Item.PurchasePrice;
+
+            if (itemOrder.Count % itemsPerFullDeal == 0)
             {
-                int sales = itemOrder.Count / saleItems;
-
-                decimal discountPrice = itemOrder.Item.PurchasePrice * DiscountMultiplier;
-                decimal discountedItems = sales * DiscountedCount;
-                decimal totalDiscountedPrice = discountPrice * discountedItems;
-
-                decimal nondiscountedItems = sales * RequiredCount;
-                decimal totalNondiscountedPrice = nondiscountedItems * itemOrder.Item.PurchasePrice;
-
                 return totalDiscountedPrice + totalNondiscountedPrice;
             }
 
-            return 0M;
+            int remainingItemsCount = itemOrder.Count % itemsPerFullDeal;
+            decimal remainingItemsPrice = remainingItemsCount * itemOrder.Item.PurchasePrice;
+
+            totalNondiscountedPrice += remainingItemsPrice;
+
+            return totalDiscountedPrice + totalNondiscountedPrice;
         }
 
         decimal DiscountMultiplier

@@ -55,5 +55,25 @@ namespace GroceryStoreTests.Specials.Eaches
             // buy 4 for $1 each, get one free
             Assert.AreEqual(8.00M, special.CalculateNewPrice(itemOrder));
         }
+
+        [TestMethod]
+        public void CalculateNewCost_ProvidesDiscountForExtraItems_WhenNotBuyingMultipleOfSaleAmount()
+        {
+            BuyNGetMDiscountedEachesGroceryItemSpecial special =
+                new BuyNGetMDiscountedEachesGroceryItemSpecial(4, 1, 100M);
+
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
+            {
+                Markdown = new PriceMarkdownStub(1.00M)
+            };
+
+            EachesGroceryItemOrder itemOrder =
+                new EachesGroceryItemOrder(item, 7);
+
+            // buy 4 for $1 each, get one free
+            // the other 2 are $1 each
+
+            Assert.AreEqual(6.00M, special.CalculateNewPrice(itemOrder));
+        }
     }
 }
