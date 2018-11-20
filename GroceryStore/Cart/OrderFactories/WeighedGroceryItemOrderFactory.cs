@@ -24,6 +24,11 @@ namespace GroceryStore.Cart.OrderFactories
             this.WeightSelector = new StaticWeightSelector(defaultWeighedItemWeight);
         }
 
+        public WeighedGroceryItemOrderFactory(IWeightSelector weightSelector)
+        {
+            this.WeightSelector = weightSelector;
+        }
+
         public IGroceryItemOrder CreateOrder(IGroceryItem item)
         {
             IWeighedGroceryItem weighedItem = item as IWeighedGroceryItem;
