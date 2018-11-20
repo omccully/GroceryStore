@@ -14,5 +14,11 @@ namespace GroceryStore.Stock
         {
             Items = new List<IGroceryItem>();
         }
+
+        public IGroceryItem Scan(string name)
+        {
+            IEnumerable<IGroceryItem> matches = Items.Where(item => item.Name == name);
+            return matches.First();
+        }
     }
 }

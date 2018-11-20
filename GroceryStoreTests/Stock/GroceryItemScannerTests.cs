@@ -26,5 +26,16 @@ namespace GroceryStoreTests.Stock
             scanner.Items.Add(new WeighedGroceryItem("bananas", 2.38M));
             Assert.AreEqual(1, scanner.Items.Count);
         }
+
+        [TestMethod]
+        public void Scan_ReturnsCorrespondingItem_IfExists()
+        {
+            GroceryItemScanner scanner = new GroceryItemScanner();
+            IGroceryItem expected = new WeighedGroceryItem("bananas", 2.38M);
+            scanner.Items.Add(expected);
+
+            IGroceryItem result = scanner.Scan("bananas");
+            Assert.AreEqual(expected, result);
+        }
     }
 }
