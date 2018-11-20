@@ -2,10 +2,11 @@
 using GroceryStore.Cart;
 using GroceryStore.Cart.OrderFactories;
 using GroceryStore.Stock;
+using GroceryStore.Stock.Scanner;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace GroceryStoreTests.Stock
+namespace GroceryStoreTests.Stock.Scanner
 {
     [TestClass]
     public class GroceryItemScannerTests
