@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GroceryStore.Stock;
+using GroceryStore.Cart.OrderFactories;
 
 namespace GroceryStore.Cart
 {
@@ -26,6 +27,19 @@ namespace GroceryStore.Cart
         {
             this.Item = item;
             this.Count = count;
+        }
+
+        public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
+        {
+            return Combine((EachesGroceryItemOrder)otherOrder);
+        }
+
+        public EachesGroceryItemOrder Combine(EachesGroceryItemOrder otherOrder)
+        {
+            if (Item != otherOrder.Item)
+                throw new InvalidGroceryItemTypeException();
+
+            return new EachesGroceryItemOrder(Item, Count + otherOrder.Count);
         }
     }
 }

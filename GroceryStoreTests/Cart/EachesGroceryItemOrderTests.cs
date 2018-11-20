@@ -43,5 +43,28 @@ namespace GroceryStoreTests.Cart
             Assert.AreEqual(item, abstractOrder.Item);
         }
 
+        [TestMethod]
+        public void Combine_ReturnsNewEachesGroceryItemWithCombinedCount()
+        {
+            EachesGroceryItem item = new EachesGroceryItem("soup", 2.00M);
+            EachesGroceryItemOrder a = new EachesGroceryItemOrder(item, 3);
+            EachesGroceryItemOrder b = new EachesGroceryItemOrder(item, 6);
+
+            EachesGroceryItemOrder result = a.Combine(b);
+
+            Assert.AreEqual(9, result.Count);
+        }
+
+        [TestMethod]
+        public void AbstractCombine_ReturnsNewEachesGroceryItemWithCombinedCount()
+        {
+            EachesGroceryItem item = new EachesGroceryItem("soup", 2.00M);
+            IGroceryItemOrder a = new EachesGroceryItemOrder(item, 3);
+            IGroceryItemOrder b = new EachesGroceryItemOrder(item, 6);
+
+            EachesGroceryItemOrder result = (EachesGroceryItemOrder)a.Combine(b);
+
+            Assert.AreEqual(9, result.Count);
+        }
     }
 }

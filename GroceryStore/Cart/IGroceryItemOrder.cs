@@ -11,5 +11,6 @@ namespace GroceryStore.Cart
     {
         IGroceryItem Item { get; }
         decimal Price { get; }
+        IGroceryItemOrder Combine(IGroceryItemOrder otherOrder);
     }
 }

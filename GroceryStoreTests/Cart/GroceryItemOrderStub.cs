@@ -18,5 +18,10 @@ namespace GroceryStoreTests.Cart
         {
             this.Price = price;
         }
+
+        public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

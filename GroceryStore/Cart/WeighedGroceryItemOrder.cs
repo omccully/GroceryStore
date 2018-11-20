@@ -27,5 +27,10 @@ namespace GroceryStore.Cart
             this.Item = item;
             this.Weight = weight;
         }
+
+        public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
