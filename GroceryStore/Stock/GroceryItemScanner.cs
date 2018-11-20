@@ -8,11 +8,11 @@ namespace GroceryStore.Stock
 {
     public class GroceryItemScanner
     {
-        public List<EachesGroceryItem> Items;
+        public List<IGroceryItem> Items;
 
         public GroceryItemScanner()
         {
-            Items = new List<EachesGroceryItem>();
+            Items = new List<IGroceryItem>();
         }
     }
 }

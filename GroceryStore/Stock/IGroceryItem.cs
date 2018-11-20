@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Stock
 {
-    public interface IEachesGroceryItem : IGroceryItem
+    public interface IGroceryItem
     {
-        decimal CalculatePurchasePrice(int count);
+        string Name { get; }
     }
 }
