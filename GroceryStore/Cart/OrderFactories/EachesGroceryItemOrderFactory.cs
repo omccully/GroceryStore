@@ -9,7 +9,17 @@ namespace GroceryStore.Cart.OrderFactories
 {
     public class EachesGroceryItemOrderFactory : IGroceryItemOrderFactory
     {
-        const int DefaultEachesItemCount = 1;
+        int DefaultEachesItemCount;
+
+        public EachesGroceryItemOrderFactory()
+        {
+            DefaultEachesItemCount = 1;
+        }
+
+        public EachesGroceryItemOrderFactory(int defaultEachesItemCount)
+        {
+            this.DefaultEachesItemCount = defaultEachesItemCount;
+        }
 
         public IGroceryItemOrder CreateOrder(IGroceryItem item)
         {
