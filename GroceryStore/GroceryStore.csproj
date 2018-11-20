@@ -49,8 +49,9 @@
     <Compile Include="Cart\OrderFactories\CountSelectors\ICountSelector.cs" />
     <Compile Include="Cart\OrderFactories\IGroceryItemOrderFactory.cs" />
     <Compile Include="Cart\OrderFactories\InvalidGroceryItemTypeException.cs" />
-    <Compile Include="Cart\OrderFactories\IWeightSelector.cs" />
+    <Compile Include="Cart\OrderFactories\WeightSelectors\IWeightSelector.cs" />
     <Compile Include="Cart\OrderFactories\WeighedGroceryItemOrderFactory.cs" />
+    <Compile Include="Cart\OrderFactories\WeightSelectors\StaticWeightSelector.cs" />
     <Compile Include="Cart\WeighedGroceryItemOrder.cs" />
     <Compile Include="Markdowns\IPriceMarkdown.cs" />
     <Compile Include="Markdowns\PriceMarkdown.cs" />
