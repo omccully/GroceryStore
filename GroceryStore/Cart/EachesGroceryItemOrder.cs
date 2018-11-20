@@ -20,6 +20,8 @@ namespace GroceryStore.Cart
             }
         }
 
+        IGroceryItem IGroceryItemOrder.Item => Item;
+
         public EachesGroceryItemOrder(IEachesGroceryItem item, int count = 1)
         {
             this.Item = item;

@@ -20,11 +20,12 @@ namespace GroceryStore.Cart
             }
         }
 
+        IGroceryItem IGroceryItemOrder.Item => Item;
+
         public WeighedGroceryItemOrder(IWeighedGroceryItem item, decimal weight)
         {
             this.Item = item;
             this.Weight = weight;
         }
-
     }
 }

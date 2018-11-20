@@ -29,7 +29,19 @@ namespace GroceryStoreTests.Cart
             EachesGroceryItemOrder order = new EachesGroceryItemOrder(item, 3);
 
             Assert.AreEqual(6.00M, order.Price);
-
         }
+
+        [TestMethod]
+        public void Item_IsImplementedForGroceryItemInterface()
+        {
+            EachesGroceryItem item = new EachesGroceryItem("soup", 2.00M);
+
+            EachesGroceryItemOrder order = new EachesGroceryItemOrder(item, 3);
+
+            IGroceryItemOrder abstractOrder = order;
+
+            Assert.AreEqual(item, abstractOrder.Item);
+        }
+
     }
 }

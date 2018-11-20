@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryStore.Stock;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace GroceryStore.Cart
 {
     public interface IGroceryItemOrder
     {
+        IGroceryItem Item { get; }
         decimal Price { get; }
     }
 }
