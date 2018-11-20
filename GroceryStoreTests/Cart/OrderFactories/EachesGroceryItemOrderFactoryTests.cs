@@ -24,5 +24,17 @@ namespace GroceryStoreTests.Cart.OrderFactories
             Assert.AreEqual(item, eachesOrder.Item);
             Assert.AreEqual(1, eachesOrder.Count);
         }
+
+        [TestMethod]
+        public void CreateOrder_ThrowsException_IfIsNotEachesGroceryItem()
+        {
+            Mock<IGroceryItem> genericItemMock = new Mock<IGroceryItem>();
+
+            EachesGroceryItemOrderFactory factory =
+                new EachesGroceryItemOrderFactory();
+
+            Assert.ThrowsException<InvalidGroceryItemTypeException>(() =>
+            factory.CreateOrder(genericItemMock.Object));
+        }
     }
 }

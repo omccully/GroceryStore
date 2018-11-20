@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Cart.OrderFactories
 {
-    class InvalidGroceryItemTypeException : Exception
+    public class InvalidGroceryItemTypeException : Exception
     {
     }
 }

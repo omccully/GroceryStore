@@ -15,6 +15,9 @@ namespace GroceryStore.Cart.OrderFactories
         {
             IEachesGroceryItem eachesItem = item as EachesGroceryItem;
 
+            if (eachesItem == null)
+                throw new InvalidGroceryItemTypeException();
+
             return new EachesGroceryItemOrder(eachesItem, DefaultEachesItemCount);
         }
     }
