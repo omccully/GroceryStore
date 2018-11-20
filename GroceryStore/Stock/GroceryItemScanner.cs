@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GroceryStore.Cart;
+using GroceryStore.Cart.OrderFactories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,9 @@ namespace GroceryStore.Stock
 {
     public class GroceryItemScanner
     {
-        public List<IGroceryItem> Items;
+        public List<IGroceryItem> Items { get; set; }
+
+        public IGroceryItemOrderFactory OrderFactory { get; set; }
 
         public GroceryItemScanner()
         {
@@ -21,6 +25,12 @@ namespace GroceryStore.Stock
             if(matches.Count() == 0) throw new GroceryItemNotFoundException();
             if (matches.Count() > 1) throw new DuplicateGroceryItemException(matches);
             return matches.First();
+        }
+
+        public IGroceryItemOrder CreateOrder(string name)
+        {
+            IGroceryItem item = Scan(name);
+            return OrderFactory.CreateOrder(item);
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using System;
+using GroceryStore.Cart;
+using GroceryStore.Cart.OrderFactories;
 using GroceryStore.Stock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace GroceryStoreTests.Stock
 {
@@ -56,6 +59,27 @@ namespace GroceryStoreTests.Stock
 
             Assert.ThrowsException<DuplicateGroceryItemException>(() =>
                 scanner.Scan("bananas"));
+        }
+
+        [TestMethod]
+        public void CreateOrder_CreatesOrderFromOrderFactory()
+        {
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
+            GroceryItemScanner scanner = new GroceryItemScanner();
+            scanner.Items.Add(bananas);
+
+            IGroceryItemOrder bananasOrder =
+                new WeighedGroceryItemOrder(bananas, 0.0M);
+            Mock<IGroceryItemOrderFactory> orderFactoryMock =
+                new Mock<IGroceryItemOrderFactory>();
+            orderFactoryMock.Setup(of => of.CreateOrder(bananas))
+                .Returns(bananasOrder);
+
+            scanner.OrderFactory = orderFactoryMock.Object;
+
+            IGroceryItemOrder orderResult = scanner.CreateOrder("bananas");
+
+            Assert.AreEqual(bananasOrder, orderResult);
         }
     }
 }
