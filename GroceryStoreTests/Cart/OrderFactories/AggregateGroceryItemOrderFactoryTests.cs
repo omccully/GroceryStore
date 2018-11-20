@@ -52,5 +52,23 @@ namespace GroceryStoreTests.Cart.OrderFactories
             Assert.AreNotEqual(unexpectedOrder, factory.CreateOrder(null));
         }
 
+        [TestMethod]
+        public void CreateOrder_ThrowsException_WhenAllFactoriesThrowException()
+        {
+            Mock<IGroceryItemOrderFactory> firstFactory = new Mock<IGroceryItemOrderFactory>();
+            firstFactory.Setup(f => f.CreateOrder(It.IsAny<IGroceryItem>()))
+               .Throws<InvalidGroceryItemTypeException>();
+
+            Mock<IGroceryItemOrderFactory> secondFactory = new Mock<IGroceryItemOrderFactory>();
+            secondFactory.Setup(f => f.CreateOrder(It.IsAny<IGroceryItem>()))
+                .Throws<InvalidGroceryItemTypeException>();
+
+            AggregateGroceryItemOrderFactory factory =
+                new AggregateGroceryItemOrderFactory(firstFactory.Object,
+                secondFactory.Object);
+
+            Assert.ThrowsException<InvalidGroceryItemTypeException>(
+                () => factory.CreateOrder(null));
+        }
     }
 }
