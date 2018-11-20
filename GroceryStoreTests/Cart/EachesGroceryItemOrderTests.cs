@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GroceryStore.Stock;
 using GroceryStore.Cart;
 using GroceryStoreTests.Specials.Eaches;
+using GroceryStore.Cart.OrderFactories;
 
 namespace GroceryStoreTests.Cart
 {
@@ -65,6 +66,19 @@ namespace GroceryStoreTests.Cart
             EachesGroceryItemOrder result = (EachesGroceryItemOrder)a.Combine(b);
 
             Assert.AreEqual(9, result.Count);
+        }
+
+
+        [TestMethod]
+        public void Combine_ThrowsException_IfItemsAreDifferent()
+        {
+            EachesGroceryItem soup = new EachesGroceryItem("soup", 1.89M);
+            EachesGroceryItem bread = new EachesGroceryItem("bread", 2.30M);
+
+            EachesGroceryItemOrder a = new EachesGroceryItemOrder(soup, 3);
+            EachesGroceryItemOrder b = new EachesGroceryItemOrder(bread, 6);
+
+            Assert.ThrowsException<InvalidGroceryItemTypeException>(() => a.Combine(b));
         }
     }
 }
