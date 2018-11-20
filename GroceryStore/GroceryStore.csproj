@@ -45,6 +45,7 @@
     <Compile Include="Cart\GroceryCart.cs" />
     <Compile Include="Cart\IGroceryItemOrder.cs" />
     <Compile Include="Cart\OrderFactories\EachesGroceryItemOrderFactory.cs" />
+    <Compile Include="Cart\OrderFactories\ICountSelector.cs" />
     <Compile Include="Cart\OrderFactories\IGroceryItemOrderFactory.cs" />
     <Compile Include="Cart\OrderFactories\InvalidGroceryItemTypeException.cs" />
     <Compile Include="Cart\OrderFactories\IWeightSelector.cs" />

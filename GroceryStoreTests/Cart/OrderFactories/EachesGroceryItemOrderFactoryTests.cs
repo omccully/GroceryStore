@@ -51,5 +51,23 @@ namespace GroceryStoreTests.Cart.OrderFactories
             Assert.AreEqual(item, eachesOrder.Item);
             Assert.AreEqual(5, eachesOrder.Count);
         }
+
+        [TestMethod]
+        public void CreateOrder_GetsCountFromCountSelector_WhenFactoryCreatedWithCountSelector()
+        {
+            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
+
+            Mock<ICountSelector> countSelectorMock = new Mock<ICountSelector>();
+            countSelectorMock.Setup(cs => cs.SelectCount()).Returns(9);
+
+            EachesGroceryItemOrderFactory factory =
+                new EachesGroceryItemOrderFactory(countSelectorMock.Object);
+
+            IGroceryItemOrder order = factory.CreateOrder(item);
+            Assert.IsTrue(order is EachesGroceryItemOrder);
+            EachesGroceryItemOrder eachesOrder = ((EachesGroceryItemOrder)order);
+            Assert.AreEqual(item, eachesOrder.Item);
+            Assert.AreEqual(9, eachesOrder.Count);
+        }
     }
 }

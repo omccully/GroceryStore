@@ -10,6 +10,7 @@ namespace GroceryStore.Cart.OrderFactories
     public class EachesGroceryItemOrderFactory : IGroceryItemOrderFactory
     {
         int DefaultEachesItemCount;
+        ICountSelector CountSelector;
 
         public EachesGroceryItemOrderFactory()
         {
@@ -21,6 +22,11 @@ namespace GroceryStore.Cart.OrderFactories
             this.DefaultEachesItemCount = defaultEachesItemCount;
         }
 
+        public EachesGroceryItemOrderFactory(ICountSelector countSelector)
+        {
+            this.CountSelector = countSelector;
+        }
+
         public IGroceryItemOrder CreateOrder(IGroceryItem item)
         {
             IEachesGroceryItem eachesItem = item as EachesGroceryItem;
@@ -28,7 +34,10 @@ namespace GroceryStore.Cart.OrderFactories
             if (eachesItem == null)
                 throw new InvalidGroceryItemTypeException();
 
-            return new EachesGroceryItemOrder(eachesItem, DefaultEachesItemCount);
+            int count = CountSelector == null ? DefaultEachesItemCount :
+                CountSelector.SelectCount();
+
+            return new EachesGroceryItemOrder(eachesItem, count);
         }
     }
 }
