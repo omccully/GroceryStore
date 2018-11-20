@@ -1,7 +1,7 @@
-﻿using System;
+﻿using GroceryStore.Cart;
+using GroceryStore.Cart.OrderFactories;
 using GroceryStore.Stock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GroceryStore.Cart;
 
 namespace GroceryStoreTests.Cart
 {
@@ -29,6 +29,42 @@ namespace GroceryStoreTests.Cart
             // 1.6 * 2.3 = 3.68
 
             Assert.AreEqual(3.68M, order.Price);
+        }
+
+        [TestMethod]
+        public void Combine_ReturnsNewWeighedGroceryItemWithCombinedWeight()
+        {
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.30M);
+            WeighedGroceryItemOrder a = new WeighedGroceryItemOrder(bananas, 1.2M);
+            WeighedGroceryItemOrder b = new WeighedGroceryItemOrder(bananas, 5.0M);
+
+            WeighedGroceryItemOrder result = a.Combine(b);
+
+            Assert.AreEqual(6.2M, result.Weight);
+        }
+
+        [TestMethod]
+        public void AbstractCombine_ReturnsNewWeighedGroceryItemWithCombinedWeight()
+        {
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.30M);
+            IGroceryItemOrder a = new WeighedGroceryItemOrder(bananas, 1.2M);
+            IGroceryItemOrder b = new WeighedGroceryItemOrder(bananas, 5.0M);
+
+            WeighedGroceryItemOrder result = (WeighedGroceryItemOrder)a.Combine(b);
+
+            Assert.AreEqual(6.2M, result.Weight);
+        }
+
+        [TestMethod]
+        public void Combine_ThrowsException_IfItemsAreDifferent()
+        {
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.30M);
+            WeighedGroceryItem potatoes = new WeighedGroceryItem("potatoes", 1.38M);
+
+            WeighedGroceryItemOrder a = new WeighedGroceryItemOrder(bananas, 1.2M);
+            WeighedGroceryItemOrder b = new WeighedGroceryItemOrder(potatoes, 5.0M);
+
+            Assert.ThrowsException<InvalidGroceryItemTypeException>(() => a.Combine(b));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using GroceryStore.Stock;
+﻿using GroceryStore.Cart.OrderFactories;
+using GroceryStore.Stock;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,15 @@ namespace GroceryStore.Cart
 
         public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
         {
-            throw new NotImplementedException();
+            return Combine((WeighedGroceryItemOrder)otherOrder);
+        }
+
+        public WeighedGroceryItemOrder Combine(WeighedGroceryItemOrder otherOrder)
+        {
+            if (Item != otherOrder.Item)
+                throw new InvalidGroceryItemTypeException();
+
+            return new WeighedGroceryItemOrder(Item, Weight + otherOrder.Weight);
         }
     }
 }
