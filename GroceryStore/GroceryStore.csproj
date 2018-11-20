@@ -44,7 +44,9 @@
     <Compile Include="Cart\EachesGroceryItemOrder.cs" />
     <Compile Include="Cart\GroceryCart.cs" />
     <Compile Include="Cart\IGroceryItemOrder.cs" />
+    <Compile Include="Cart\OrderFactories\EachesGroceryItemOrderFactory.cs" />
     <Compile Include="Cart\OrderFactories\IGroceryItemOrderFactory.cs" />
+    <Compile Include="Cart\OrderFactories\InvalidGroceryItemTypeException.cs" />
     <Compile Include="Cart\WeighedGroceryItemOrder.cs" />
     <Compile Include="Markdowns\IPriceMarkdown.cs" />
     <Compile Include="Markdowns\PriceMarkdown.cs" />
