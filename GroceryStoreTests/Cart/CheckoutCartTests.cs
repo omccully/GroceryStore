@@ -5,14 +5,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GroceryStoreTests.Cart
 {
     [TestClass]
-    public class GroceryCartTests
+    public class CheckoutCartTests
     {
         [TestMethod]
         public void Orders_CanAddEachesItem()
         {
             EachesGroceryItemOrder eachesOrder = new EachesGroceryItemOrder(null, 3);
 
-            GroceryCart cart = new GroceryCart();
+            CheckoutCart cart = new CheckoutCart();
 
             Assert.AreEqual(0, cart.Orders.Count);
             cart.Orders.Add(eachesOrder);
@@ -24,7 +24,7 @@ namespace GroceryStoreTests.Cart
         {
             WeighedGroceryItemOrder weighedOrder = new WeighedGroceryItemOrder(null, 3M);
 
-            GroceryCart cart = new GroceryCart();
+            CheckoutCart cart = new CheckoutCart();
 
             Assert.AreEqual(0, cart.Orders.Count);
             cart.Orders.Add(weighedOrder);
@@ -34,7 +34,7 @@ namespace GroceryStoreTests.Cart
         [TestMethod]
         public void Price_CalculatesTotalPriceFromOrders()
         {
-            GroceryCart cart = new GroceryCart();
+            CheckoutCart cart = new CheckoutCart();
             cart.Orders.Add(new GroceryItemOrderStub(1.50M));
             cart.Orders.Add(new GroceryItemOrderStub(2.00M));
 

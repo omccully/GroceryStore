@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cart\EachesGroceryItemOrderTests.cs" />
-    <Compile Include="Cart\GroceryCartTests.cs" />
+    <Compile Include="Cart\CheckoutCartTests.cs" />
     <Compile Include="Cart\GroceryItemOrderStub.cs" />
     <Compile Include="Cart\OrderFactories\AggregateGroceryItemOrderFactoryTests.cs" />
     <Compile Include="Cart\OrderFactories\EachesGroceryItemOrderFactoryTests.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Cart
 {
-    public class GroceryCart
+    public class CheckoutCart
     {
         public List<IGroceryItemOrder> Orders { get; set; }
 
@@ -18,7 +18,7 @@ namespace GroceryStore.Cart
             }
         }
 
-        public GroceryCart()
+        public CheckoutCart()
         {
             Orders = new List<IGroceryItemOrder>();
         }
