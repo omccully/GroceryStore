@@ -19,6 +19,7 @@ namespace GroceryStore.Stock
         {
             IEnumerable<IGroceryItem> matches = Items.Where(item => item.Name == name);
             if(matches.Count() == 0) throw new GroceryItemNotFoundException();
+            if (matches.Count() > 1) throw new DuplicateGroceryItemException(matches);
             return matches.First();
         }
     }

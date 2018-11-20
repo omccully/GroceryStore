@@ -54,6 +54,7 @@
     <Compile Include="Specials\Eaches\LimitedEachesGroceryItemSpecial.cs" />
     <Compile Include="Specials\Weighed\BuyNGetUpToMDiscountedWeighedGroceryItemSpecial.cs" />
     <Compile Include="Specials\Weighed\IWeighedGroceryItemSpecial.cs" />
+    <Compile Include="Stock\DuplicateGroceryItemException.cs" />
     <Compile Include="Stock\EachesGroceryItem.cs" />
     <Compile Include="Stock\GroceryItemNotFoundException.cs" />
     <Compile Include="Stock\GroceryItemScanner.cs" />

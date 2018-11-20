@@ -37,14 +37,24 @@ namespace GroceryStoreTests.Stock
             IGroceryItem result = scanner.Scan("bananas");
             Assert.AreEqual(expected, result);
         }
-
-
+        
         [TestMethod]
         public void Scan_ThrowsException_IfDoesntExist()
         {
             GroceryItemScanner scanner = new GroceryItemScanner();
 
             Assert.ThrowsException<GroceryItemNotFoundException>(() => 
+                scanner.Scan("bananas"));
+        }
+
+        [TestMethod]
+        public void Scan_ThrowsException_IfParamterMatchesMoreThanOne()
+        {
+            GroceryItemScanner scanner = new GroceryItemScanner();
+            scanner.Items.Add(new WeighedGroceryItem("bananas", 2.38M));
+            scanner.Items.Add(new EachesGroceryItem("bananas", 1.00M));
+
+            Assert.ThrowsException<DuplicateGroceryItemException>(() =>
                 scanner.Scan("bananas"));
         }
     }
