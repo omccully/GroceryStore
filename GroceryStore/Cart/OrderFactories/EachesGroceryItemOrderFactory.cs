@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GroceryStore.Cart.OrderFactories.CountSelectors;
 using GroceryStore.Stock;
 
 namespace GroceryStore.Cart.OrderFactories
 {
     public class EachesGroceryItemOrderFactory : IGroceryItemOrderFactory
     {
-        int DefaultEachesItemCount;
+        const int DefaultCount = 1;
+
         ICountSelector CountSelector;
 
         public EachesGroceryItemOrderFactory()
+            : this(DefaultCount)
         {
-            DefaultEachesItemCount = 1;
         }
 
         public EachesGroceryItemOrderFactory(int defaultEachesItemCount)
         {
-            this.DefaultEachesItemCount = defaultEachesItemCount;
+            this.CountSelector = new StaticCountSelector(defaultEachesItemCount);
         }
 
         public EachesGroceryItemOrderFactory(ICountSelector countSelector)
@@ -34,8 +36,7 @@ namespace GroceryStore.Cart.OrderFactories
             if (eachesItem == null)
                 throw new InvalidGroceryItemTypeException();
 
-            int count = CountSelector == null ? DefaultEachesItemCount :
-                CountSelector.SelectCount();
+            int count = CountSelector.SelectCount();
 
             return new EachesGroceryItemOrder(eachesItem, count);
         }
