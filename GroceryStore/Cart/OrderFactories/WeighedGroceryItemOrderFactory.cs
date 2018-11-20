@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GroceryStore.Cart.OrderFactories.WeightSelectors;
 using GroceryStore.Stock;
 
 namespace GroceryStore.Cart.OrderFactories
 {
     public class WeighedGroceryItemOrderFactory : IGroceryItemOrderFactory
     {
-        decimal DefaultWeighedItemWeight;
+        const decimal DefaultWeight = 0.0M;
+        IWeightSelector WeightSelector;
 
         public WeighedGroceryItemOrderFactory()
+            : this(DefaultWeight)
         {
-            this.DefaultWeighedItemWeight = 0.0M;
+            
+        }
+
+        public WeighedGroceryItemOrderFactory(decimal defaultWeighedItemWeight)
+        {
+            this.WeightSelector = new StaticWeightSelector(defaultWeighedItemWeight);
         }
 
         public IGroceryItemOrder CreateOrder(IGroceryItem item)
@@ -23,7 +31,9 @@ namespace GroceryStore.Cart.OrderFactories
             if (weighedItem == null)
                 throw new InvalidGroceryItemTypeException();
 
-            return new WeighedGroceryItemOrder(weighedItem, DefaultWeighedItemWeight);
+            decimal weight = WeightSelector.SelectWeight();
+
+            return new WeighedGroceryItemOrder(weighedItem, weight);
         }
     }
 }

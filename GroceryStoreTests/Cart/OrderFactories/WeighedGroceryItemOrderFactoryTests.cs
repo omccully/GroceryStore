@@ -37,5 +37,19 @@ namespace GroceryStoreTests.Cart.OrderFactories
             factory.CreateOrder(genericItemMock.Object));
         }
 
+        [TestMethod]
+        public void CreateOrder_CreatesOrderWithFiveItems_WhenFactoryCreatedWithCustomDefault()
+        {
+            WeighedGroceryItem item = new WeighedGroceryItem("bananas", 2.38M);
+
+            WeighedGroceryItemOrderFactory factory =
+                new WeighedGroceryItemOrderFactory(5);
+
+            IGroceryItemOrder order = factory.CreateOrder(item);
+            Assert.IsTrue(order is WeighedGroceryItemOrder);
+            WeighedGroceryItemOrder weighedOrder = ((WeighedGroceryItemOrder)order);
+            Assert.AreEqual(item, weighedOrder.Item);
+            Assert.AreEqual(5, weighedOrder.Weight);
+        }
     }
 }
