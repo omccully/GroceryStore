@@ -34,7 +34,8 @@ namespace GroceryStore.Cart.OrderFactories
                 }
                 catch(InvalidGroceryItemTypeException)
                 {
-
+                    // when a factory throws an exception, 
+                    // ignore the exception and try the next factory
                 }
             }
 
