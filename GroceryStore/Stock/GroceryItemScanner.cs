@@ -18,6 +18,7 @@ namespace GroceryStore.Stock
         public IGroceryItem Scan(string name)
         {
             IEnumerable<IGroceryItem> matches = Items.Where(item => item.Name == name);
+            if(matches.Count() == 0) throw new GroceryItemNotFoundException();
             return matches.First();
         }
     }
