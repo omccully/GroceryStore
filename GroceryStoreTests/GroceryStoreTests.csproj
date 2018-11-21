@@ -70,6 +70,7 @@
     <Compile Include="Cart\OrderFactories\EachesGroceryItemOrderFactoryTests.cs" />
     <Compile Include="Cart\OrderFactories\WeighedGroceryItemOrderFactoryTests.cs" />
     <Compile Include="Cart\WeighedGroceryItemOrderTests.cs" />
+    <Compile Include="Integration\GroceryItemScannerIntegrationTests.cs" />
     <Compile Include="Markdowns\PriceMarkdownStub.cs" />
     <Compile Include="Markdowns\PriceMarkdownTests.cs" />
     <Compile Include="Specials\Eaches\BuyNForXEachesGroceryItemSpecialTest.cs" />
