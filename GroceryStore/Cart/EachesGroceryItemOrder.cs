@@ -37,7 +37,7 @@ namespace GroceryStore.Cart
         public EachesGroceryItemOrder Combine(EachesGroceryItemOrder otherOrder)
         {
             if (Item != otherOrder.Item)
-                throw new InvalidGroceryItemTypeException();
+                throw new DifferingItemsException();
 
             return new EachesGroceryItemOrder(Item, Count + otherOrder.Count);
         }

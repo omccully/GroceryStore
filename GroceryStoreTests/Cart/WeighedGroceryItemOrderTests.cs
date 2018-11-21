@@ -66,7 +66,7 @@ namespace GroceryStoreTests.Cart
             WeighedGroceryItemOrder a = new WeighedGroceryItemOrder(bananas, 1.2M);
             WeighedGroceryItemOrder b = new WeighedGroceryItemOrder(potatoes, 5.0M);
 
-            Assert.ThrowsException<InvalidGroceryItemTypeException>(() => a.Combine(b));
+            Assert.ThrowsException<DifferingItemsException>(() => a.Combine(b));
         }
     }
 }

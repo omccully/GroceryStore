@@ -44,6 +44,7 @@
     <Compile Include="Cart\EachesGroceryItemOrder.cs" />
     <Compile Include="Cart\CheckoutCart.cs" />
     <Compile Include="Cart\IGroceryItemOrder.cs" />
+    <Compile Include="Cart\DifferingItemsException.cs" />
     <Compile Include="Cart\OrderFactories\AggregateGroceryItemOrderFactory.cs" />
     <Compile Include="Cart\OrderFactories\CountSelectors\StaticCountSelector.cs" />
     <Compile Include="Cart\OrderFactories\EachesGroceryItemOrderFactory.cs" />

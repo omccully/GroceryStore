@@ -81,7 +81,7 @@ namespace GroceryStoreTests.Cart
             EachesGroceryItemOrder a = new EachesGroceryItemOrder(soup, 3);
             EachesGroceryItemOrder b = new EachesGroceryItemOrder(bread, 6);
 
-            Assert.ThrowsException<InvalidGroceryItemTypeException>(() => a.Combine(b));
+            Assert.ThrowsException<DifferingItemsException>(() => a.Combine(b));
         }
     }
 }

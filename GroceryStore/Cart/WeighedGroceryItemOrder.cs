@@ -37,7 +37,7 @@ namespace GroceryStore.Cart
         public WeighedGroceryItemOrder Combine(WeighedGroceryItemOrder otherOrder)
         {
             if (Item != otherOrder.Item)
-                throw new InvalidGroceryItemTypeException();
+                throw new DifferingItemsException();
 
             return new WeighedGroceryItemOrder(Item, Weight + otherOrder.Weight);
         }
