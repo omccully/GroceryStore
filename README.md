@@ -154,4 +154,4 @@ To run the tests from a command prompt (also requires Visual Studio to be instal
 3. Compile the test project: ```"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" GroceryStoreTests.csproj```
 4. Find vstest.console.exe. Example: ```C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe```
 5. In a command prompt, change directory to the GroceryStoreTests/bin/Debug folder. 
-6. Run the tests: ```"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe GroceryStoreTests.dll```
+6. Run the tests: ```"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" GroceryStoreTests.dll```
