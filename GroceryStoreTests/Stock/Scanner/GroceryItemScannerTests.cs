@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using GroceryStore.Cart;
 using GroceryStore.Cart.OrderFactories;
 using GroceryStore.Stock;
@@ -60,6 +62,34 @@ namespace GroceryStoreTests.Stock.Scanner
 
             Assert.ThrowsException<DuplicateGroceryItemException>(() =>
                 scanner.Scan("bananas"));
+        }
+
+        [TestMethod]
+        public void Scan_ThrowsExceptionContainingTheDuplicateItems_IfParamterMatchesMoreThanOne()
+        {
+            List<IGroceryItem> duplicateItems = new List<IGroceryItem>()
+            {
+                new WeighedGroceryItem("bananas", 2.38M),
+                new EachesGroceryItem("bananas", 1.00M)
+            };
+
+            GroceryItemScanner scanner = new GroceryItemScanner();
+
+            scanner.Items.Add(new EachesGroceryItem("soup", 1.89M));
+            foreach(IGroceryItem item in duplicateItems)
+            {
+                scanner.Items.Add(item);
+            }
+           
+            try
+            {
+                scanner.Scan("bananas");
+                Assert.Fail();
+            }
+            catch(DuplicateGroceryItemException e)
+            {
+                CollectionAssert.AreEquivalent(duplicateItems, e.Duplicates.ToList());
+            }
         }
 
         [TestMethod]
