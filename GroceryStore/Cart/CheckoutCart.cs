@@ -12,7 +12,7 @@ namespace GroceryStore.Cart
     /// </summary>
     public class CheckoutCart
     {
-        public List<IGroceryItemOrder> Orders { get; set; }
+        public ICollection<IGroceryItemOrder> Orders { get; }
 
         public decimal TotalPrice
         {

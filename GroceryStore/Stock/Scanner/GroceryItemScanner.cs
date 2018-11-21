@@ -13,7 +13,7 @@ namespace GroceryStore.Stock.Scanner
     /// </summary>
     public class GroceryItemScanner
     {
-        public List<IGroceryItem> Items { get; set; }
+        public ICollection<IGroceryItem> Items { get; }
 
         public IGroceryItemOrderFactory OrderFactory { get; set; }
 
