@@ -71,12 +71,37 @@ bananas.Special =
     new BuyNGetMOfEqualOrLesserValueDiscountedWeighedGroceryItemSpecial(
         3.0M, 70M);
 ```
+
+## EachesGroceryItemOrder and WeighedGroceryItemOrder
+
+"Orders" contain information about an item that's being purchased. Order objects contain the amount of an item that's being purchased (```Count``` for EachesGroceryItemOrder and ```Weight``` for WeighedGroceryItemOrder).
+
+### Order factories
+
+An order factory creates order objects based on the IGroceryItem that was passed in. 
+
+Since the IGroceryItemOrderFactory interface does not define a way to enter the weight for the order being created, instead, we can pass in a IWeightSelector into WeighedGroceryItemOrderFactory's constructor to provide weight values for WeighedGroceryItemOrder objects. A typical example of an ```IWeightSelector.SelectWeight(IGroceryItem)``` implementation would be to display a user interface window to:
+
+* display information about the item that was scanned
+* display the amount of weight that the scale hardware is reading
+* display a confirmation button, which closes the user interface and returns the weight reading. 
+
+The IGroceryItemOrderFactory interface effectively defines what types of items are supported by the scanner, thus allowing the user of the library to define their own item types implementing IGroceryItem if necessary. For example, defining VolumeGroceryItem to represent items that are bought by volume could be possible without having to modify CheckoutCart, GroceryItemScanner, or any other part of the code in any way. 
+
 ## Putting it all together
+
 
 ### Configuration
 ```csharp
+// UiWeightSelector is an example; it's not defined in the GroceryStore library
+IWeightSelector uiWeightSelector = new UiWeightSelector() 
+IGroceryItemOrderFactory orderFactory = new AggregateGroceryItemOrderFactory(
+        new EachesGroceryItemOrderFactory(),
+        new WeighedGroceryItemOrderFactory(uiWeightSelector)
+    );
+
 // setup the store's items 
-GroceryItemScanner scanner = new GroceryItemScanner();
+GroceryItemScanner scanner = new GroceryItemScanner(orderFactory);
 scanner.Items.Add(new EachesGroceryItem("Canned soup", 1.89M));
 scanner.Items.Add(new WeighedGroceryItem("Bananas", 2.38M));
 scanner.Items.Add(new EachesGroceryItem("Bread", 2.49M) 
@@ -90,12 +115,6 @@ scanner.Items.Add(new EachesGroceryItem("Coconut date rolls", 6.99M)
     Special = new BuyNForXEachesGroceryItemSpecial(3, 15.00M)
 });
 
-// UiWeightSelector is an example; it's not defined in the GroceryStore library
-IWeightSelector uiWeightSelector = new UiWeightSelector() 
-scanner.OrderFactory = new AggregateGroceryItemOrderFactory(
-        new EachesGroceryItemOrderFactory(),
-        new WeighedGroceryItemOrderFactory(uiWeightSelector)
-    );
 ```
 ### Scanning items, removing items, and checking the total price
 ```csharp
