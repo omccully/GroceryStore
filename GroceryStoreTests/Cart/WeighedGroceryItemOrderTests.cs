@@ -2,6 +2,7 @@
 using GroceryStore.Cart.OrderFactories;
 using GroceryStore.Stock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace GroceryStoreTests.Cart
 {
@@ -22,13 +23,14 @@ namespace GroceryStoreTests.Cart
         [TestMethod]
         public void Price_CalculatesUsingItemMethod()
         {
-            decimal weight = 1.6M;
-            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.30M);
-            WeighedGroceryItemOrder order = new WeighedGroceryItemOrder(bananas, weight);
+            Mock<IGroceryItem<decimal>> itemMock = new Mock<IGroceryItem<decimal>>();
+            itemMock.Setup((item) => item.CalculatePurchasePrice(It.IsAny<decimal>()))
+                .Returns((decimal weight) => weight * 2.0M);
 
-            // 1.6 * 2.3 = 3.68
+            WeighedGroceryItemOrder order = new WeighedGroceryItemOrder(itemMock.Object, 1.5M);
 
-            Assert.AreEqual(3.68M, order.Price);
+            // 1.5M * 2.0M = 3.0M
+            Assert.AreEqual(3.00M, order.Price);
         }
 
         [TestMethod]
