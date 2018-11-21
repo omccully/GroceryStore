@@ -17,8 +17,9 @@ namespace GroceryStore.Stock.Scanner
 
         public IGroceryItemOrderFactory OrderFactory { get; set; }
 
-        public GroceryItemScanner()
+        public GroceryItemScanner(IGroceryItemOrderFactory orderFactory)
         {
+            this.OrderFactory = orderFactory;
             Items = new List<IGroceryItem>();
         }
 

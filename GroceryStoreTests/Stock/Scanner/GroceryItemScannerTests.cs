@@ -16,7 +16,7 @@ namespace GroceryStoreTests.Stock.Scanner
         [TestMethod]
         public void Items_CanAddEachesGroceryItem()
         {
-            GroceryItemScanner scanner = new GroceryItemScanner();
+            GroceryItemScanner scanner = new GroceryItemScanner(null);
 
             Assert.AreEqual(0, scanner.Items.Count);
             scanner.Items.Add(new EachesGroceryItem("soup", 1.89M));
@@ -26,7 +26,7 @@ namespace GroceryStoreTests.Stock.Scanner
         [TestMethod]
         public void Items_CanAddWeighedGroceryItem()
         {
-            GroceryItemScanner scanner = new GroceryItemScanner();
+            GroceryItemScanner scanner = new GroceryItemScanner(null);
 
             Assert.AreEqual(0, scanner.Items.Count);
             scanner.Items.Add(new WeighedGroceryItem("bananas", 2.38M));
@@ -36,7 +36,7 @@ namespace GroceryStoreTests.Stock.Scanner
         [TestMethod]
         public void Scan_ReturnsCorrespondingItem_IfExists()
         {
-            GroceryItemScanner scanner = new GroceryItemScanner();
+            GroceryItemScanner scanner = new GroceryItemScanner(null);
             IGroceryItem expected = new WeighedGroceryItem("bananas", 2.38M);
             scanner.Items.Add(expected);
 
@@ -47,7 +47,7 @@ namespace GroceryStoreTests.Stock.Scanner
         [TestMethod]
         public void Scan_ThrowsException_IfDoesntExist()
         {
-            GroceryItemScanner scanner = new GroceryItemScanner();
+            GroceryItemScanner scanner = new GroceryItemScanner(null);
 
             Assert.ThrowsException<GroceryItemNotFoundException>(() => 
                 scanner.Scan("bananas"));
@@ -56,7 +56,7 @@ namespace GroceryStoreTests.Stock.Scanner
         [TestMethod]
         public void Scan_ThrowsException_IfParamterMatchesMoreThanOne()
         {
-            GroceryItemScanner scanner = new GroceryItemScanner();
+            GroceryItemScanner scanner = new GroceryItemScanner(null);
             scanner.Items.Add(new WeighedGroceryItem("bananas", 2.38M));
             scanner.Items.Add(new EachesGroceryItem("bananas", 1.00M));
 
@@ -73,7 +73,7 @@ namespace GroceryStoreTests.Stock.Scanner
                 new EachesGroceryItem("bananas", 1.00M)
             };
 
-            GroceryItemScanner scanner = new GroceryItemScanner();
+            GroceryItemScanner scanner = new GroceryItemScanner(null);
 
             scanner.Items.Add(new EachesGroceryItem("soup", 1.89M));
             foreach(IGroceryItem item in duplicateItems)
@@ -96,8 +96,7 @@ namespace GroceryStoreTests.Stock.Scanner
         public void CreateOrder_CreatesOrderFromOrderFactory()
         {
             WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
-            GroceryItemScanner scanner = new GroceryItemScanner();
-            scanner.Items.Add(bananas);
+            
 
             IGroceryItemOrder bananasOrder =
                 new WeighedGroceryItemOrder(bananas, 0.0M);
@@ -106,7 +105,8 @@ namespace GroceryStoreTests.Stock.Scanner
             orderFactoryMock.Setup(of => of.CreateOrder(bananas))
                 .Returns(bananasOrder);
 
-            scanner.OrderFactory = orderFactoryMock.Object;
+            GroceryItemScanner scanner = new GroceryItemScanner(orderFactoryMock.Object);
+            scanner.Items.Add(bananas);
 
             IGroceryItemOrder orderResult = scanner.CreateOrder("bananas");
 
