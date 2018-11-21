@@ -35,10 +35,19 @@ namespace GroceryStoreTests.Cart
         public void Price_CalculatesTotalPriceFromOrders()
         {
             CheckoutCart cart = new CheckoutCart();
-            cart.Orders.Add(new GroceryItemOrderStub(1.50M));
-            cart.Orders.Add(new GroceryItemOrderStub(2.00M));
+            cart.Orders.Add(new GroceryItemOrderFake(1.50M));
+            cart.Orders.Add(new GroceryItemOrderFake(2.00M));
 
             Assert.AreEqual(3.50M, cart.TotalPrice);
         }
+
+        /*[TestMethod]
+        public void GroupOrdersByItem_GroupsOrdersByItem()
+        {
+            CheckoutCart cart = new CheckoutCart();
+
+            //cart.Orders.Add()
+            Assert.Fail();
+        }*/
     }
 }

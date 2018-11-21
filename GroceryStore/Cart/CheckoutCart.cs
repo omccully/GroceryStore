@@ -22,5 +22,18 @@ namespace GroceryStore.Cart
         {
             Orders = new List<IGroceryItemOrder>();
         }
+
+        public IEnumerable<IGroceryItemOrder> OrdersCombinedByItem
+        {
+            get
+            {
+                return Orders.GroupBy(order => order.Item).Select(CombineOrders);
+            }
+        }
+
+        IGroceryItemOrder CombineOrders(IEnumerable<IGroceryItemOrder> orders)
+        {
+            return orders.Aggregate((accumulation, order) => accumulation.Combine(order));
+        }
     }
 }

@@ -8,20 +8,26 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreTests.Cart
 {
-    class GroceryItemOrderStub : IGroceryItemOrder
+    class GroceryItemOrderFake : IGroceryItemOrder
     {
         public decimal Price { get; private set; }
 
-        public IGroceryItem Item => throw new NotImplementedException();
+        public IGroceryItem Item { get; private set; }
 
-        public GroceryItemOrderStub(decimal price)
+        public GroceryItemOrderFake(decimal price)
         {
+            this.Price = price;
+        }
+
+        public GroceryItemOrderFake(IGroceryItem item, decimal price)
+        {
+            this.Item = item;
             this.Price = price;
         }
 
         public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
         {
-            throw new NotImplementedException();
+            return new GroceryItemOrderFake(Price + otherOrder.Price);
         }
     }
 }
