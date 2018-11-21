@@ -94,7 +94,7 @@ The IGroceryItemOrderFactory interface effectively defines what types of items a
 ### Configuration
 ```csharp
 // UiWeightSelector is an example; it's not defined in the GroceryStore library
-IWeightSelector uiWeightSelector = new UiWeightSelector() 
+IWeightSelector uiWeightSelector = new UiWeightSelector();
 IGroceryItemOrderFactory orderFactory = new AggregateGroceryItemOrderFactory(
         new EachesGroceryItemOrderFactory(),
         new WeighedGroceryItemOrderFactory(uiWeightSelector)
