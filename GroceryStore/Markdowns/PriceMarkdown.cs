@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Markdowns
 {
+    /// <summary>
+    /// Represents a price markdown that reduces the price by a static amount.
+    /// </summary>
     public class PriceMarkdown : IPriceMarkdown
     {
         decimal ReductionAmount;

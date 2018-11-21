@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Cart
 {
+    /// <summary>
+    /// Contains a collection of IGroceryItemOrders that is used to caclculate the total price.
+    /// </summary>
     public class CheckoutCart
     {
         public List<IGroceryItemOrder> Orders { get; set; }

@@ -7,6 +7,10 @@ using GroceryStore.Stock;
 
 namespace GroceryStore.Cart.OrderFactories
 {
+    /// <summary>
+    /// Combines multiple GroceryItemOrderFactory into one IGroceryItemOrderFactory. 
+    /// Skips factories that throw InvalidGroceryItemTypeException.
+    /// </summary>
     public class AggregateGroceryItemOrderFactory : IGroceryItemOrderFactory
     {
         List<IGroceryItemOrderFactory> Factories;

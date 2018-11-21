@@ -7,6 +7,9 @@ using GroceryStore.Cart;
 
 namespace GroceryStore.Specials.Eaches
 {
+    /// <summary>
+    /// Represents a special for a discount on M amount of items if more than N items were bought.
+    /// </summary>
     public class BuyNGetMDiscountedEachesGroceryItemSpecial : IGroceryItemSpecial<int>
     {
         int RequiredCount, DiscountedCount;

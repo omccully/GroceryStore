@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Stock.Scanner
 {
+    /// <summary>
+    /// Contains the collection of items that the store sells and allows for resolving items by name
+    /// </summary>
     public class GroceryItemScanner
     {
         public List<IGroceryItem> Items { get; set; }

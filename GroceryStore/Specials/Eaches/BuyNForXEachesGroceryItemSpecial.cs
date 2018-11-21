@@ -7,6 +7,9 @@ using GroceryStore.Cart;
 
 namespace GroceryStore.Specials.Eaches
 {
+    /// <summary>
+    /// Represents a special for setting a fixed price for a certain number of items
+    /// </summary>
     public class BuyNForXEachesGroceryItemSpecial : IGroceryItemSpecial<int>
     {
         int RequiredCount;

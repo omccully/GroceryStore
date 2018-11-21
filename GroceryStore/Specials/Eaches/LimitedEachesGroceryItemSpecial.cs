@@ -7,6 +7,9 @@ using GroceryStore.Cart;
 
 namespace GroceryStore.Specials.Eaches
 {
+    /// <summary>
+    /// Decorator that limits the number of items that a special applies to.
+    /// </summary>
     public class LimitedEachesGroceryItemSpecial : IGroceryItemSpecial<int>
     {
         IGroceryItemSpecial<int> InnerSpecial;
