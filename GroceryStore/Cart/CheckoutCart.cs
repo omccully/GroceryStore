@@ -12,8 +12,6 @@ namespace GroceryStore.Cart
     /// </summary>
     public class CheckoutCart
     {
-        public ICollection<IGroceryItemOrder> Orders { get; }
-
         public decimal TotalPrice
         {
             get
@@ -22,10 +20,7 @@ namespace GroceryStore.Cart
             }
         }
 
-        public CheckoutCart()
-        {
-            Orders = new List<IGroceryItemOrder>();
-        }
+        public ICollection<IGroceryItemOrder> Orders { get; }
 
         public IEnumerable<IGroceryItemOrder> OrdersCombinedByItem
         {
@@ -35,14 +30,19 @@ namespace GroceryStore.Cart
             }
         }
 
-        IGroceryItemOrder CombineOrders(IEnumerable<IGroceryItemOrder> orders)
+        public CheckoutCart()
         {
-            return orders.Aggregate((accumulation, order) => accumulation.Combine(order));
+            Orders = new List<IGroceryItemOrder>();
         }
 
         public IGroceryItemOrder CombineOrdersForItem(IGroceryItem item)
         {
             return OrdersCombinedByItem.First(combinedOrder => combinedOrder.Item == item);
+        }
+
+        IGroceryItemOrder CombineOrders(IEnumerable<IGroceryItemOrder> orders)
+        {
+            return orders.Aggregate((accumulation, order) => accumulation.Combine(order));
         }
     }
 }
