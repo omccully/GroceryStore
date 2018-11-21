@@ -148,10 +148,11 @@ All of the software necessary to run the tests for this library are included in 
 3. In the Test Explorer, click "Run All"
 4. Once the tests are finished, a green checkmark should appear next to each test, signifying that all of the tests passed.
 
-To run the tests from a command prompt (also requires Visual Studio to be installed):
-1. Find msbuild.exe. Example: ```C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe```
-2. In a command prompt, change directory to the GroceryStoreTests project folder
-3. Compile the test project: ```"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" GroceryStoreTests.csproj```
-4. Find vstest.console.exe. Example: ```C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe```
-5. In a command prompt, change directory to the GroceryStoreTests/bin/Debug folder. 
-6. Run the tests: ```"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" GroceryStoreTests.dll```
+To run the tests from a command prompt (requires Visual Studio to be installed):
+1. Download nuget.exe if it is not already on your machine (https://www.nuget.org/downloads). 
+2. Find msbuild.exe. Example: ```C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe```
+3. Find vstest.console.exe. Example: ```C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe```
+4. From the solution directory, run the command ```nuget.exe restore GroceryStore.sln``` to download the NuGet package dependencies. 
+5. Change directory to GroceryStoreTests, and run the command ```msbuild.exe GroceryStoreTests.csproj``` to build the test project.
+6. Change directory to GroceryStoreTests/bin/Debug, and run the command ```vstest.console.exe GroceryStoreTests.dll``` to run the tests. 
+
