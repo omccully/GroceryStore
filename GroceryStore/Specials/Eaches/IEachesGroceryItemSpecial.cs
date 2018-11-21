@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Specials.Eaches
 {
-    public interface IEachesGroceryItemSpecial
+    public interface IEachesGroceryItemSpecial : IGroceryItemSpecial<int>
     {
-        decimal CalculateNewPrice(decimal pricePerItem, int itemCount);
+
     }
 }

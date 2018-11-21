@@ -31,7 +31,7 @@ namespace GroceryStore.Cart.OrderFactories
 
         public IGroceryItemOrder CreateOrder(IGroceryItem item)
         {
-            IWeighedGroceryItem weighedItem = item as IWeighedGroceryItem;
+            WeighedGroceryItem weighedItem = item as WeighedGroceryItem;
 
             if (weighedItem == null)
                 throw new InvalidGroceryItemTypeException();

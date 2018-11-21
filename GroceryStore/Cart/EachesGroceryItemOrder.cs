@@ -10,7 +10,7 @@ namespace GroceryStore.Cart
 {
     public class EachesGroceryItemOrder : IGroceryItemOrder
     {
-        public IEachesGroceryItem Item { get; private set; }
+        public IGroceryItem<int> Item { get; private set; }
         public int Count { get; set; }
 
         public decimal Price
@@ -23,7 +23,7 @@ namespace GroceryStore.Cart
 
         IGroceryItem IGroceryItemOrder.Item => Item;
 
-        public EachesGroceryItemOrder(IEachesGroceryItem item, int count = 1)
+        public EachesGroceryItemOrder(IGroceryItem<int> item, int count = 1)
         {
             this.Item = item;
             this.Count = count;

@@ -17,7 +17,7 @@ namespace GroceryStoreTests.Stock
             WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
 
             Assert.AreEqual("bananas", bananas.Name);
-            Assert.AreEqual(2.38M, bananas.OriginalPricePerUnit);
+            Assert.AreEqual(2.38M, bananas.OriginalPrice);
         }
 
         [TestMethod]
@@ -28,7 +28,7 @@ namespace GroceryStoreTests.Stock
                 Markdown = new PriceMarkdownStub(1.50M)
             };
 
-            Assert.AreEqual(1.50M, bananas.PurchasePricePerUnit);
+            Assert.AreEqual(1.50M, bananas.PurchasePrice);
         }
         
         [TestMethod]
@@ -36,7 +36,7 @@ namespace GroceryStoreTests.Stock
         {
             WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
 
-            Assert.AreEqual(2.38M, bananas.PurchasePricePerUnit);
+            Assert.AreEqual(2.38M, bananas.PurchasePrice);
         }
 
         [TestMethod]

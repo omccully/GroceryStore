@@ -8,36 +8,12 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Stock
 {
-    public class EachesGroceryItem : IEachesGroceryItem
+    public class EachesGroceryItem : GroceryItem<int>
     {
-        public string Name { get; private set; }
-
-        public decimal OriginalPrice { get; set; }
-
-        public IPriceMarkdown Markdown { get; set; }
-
-        public decimal PurchasePrice
-        {
-            get
-            {
-                if (Markdown == null) return OriginalPrice;
-                return Markdown.CalculateNewPrice(OriginalPrice);
-            }
-        }
-
-        public IEachesGroceryItemSpecial Special { get; set; }
-
         public EachesGroceryItem(string name, decimal originalPrice)
+            : base(name, originalPrice)
         {
-            this.Name = name;
-            this.OriginalPrice = originalPrice;
-        }
 
-        public decimal CalculatePurchasePrice(int count)
-        {
-            if (Special != null)
-                return Special.CalculateNewPrice(PurchasePrice, count);
-            return PurchasePrice * count;
         }
     }
 }

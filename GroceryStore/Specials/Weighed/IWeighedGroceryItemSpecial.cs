@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Specials.Weighed
 {
-    public interface IWeighedGroceryItemSpecial
+    public interface IWeighedGroceryItemSpecial : IGroceryItemSpecial<decimal>
     {
-        decimal CalculateNewPrice(decimal pricePerUnit, decimal itemWeight);
     }
 }

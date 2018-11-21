@@ -10,7 +10,7 @@ namespace GroceryStore.Cart
 {
     public class WeighedGroceryItemOrder : IGroceryItemOrder
     {
-        public IWeighedGroceryItem Item { get; private set; }
+        public IGroceryItem<decimal> Item { get; private set; }
         public decimal Weight { get; set; }
 
         public decimal Price
@@ -23,7 +23,7 @@ namespace GroceryStore.Cart
 
         IGroceryItem IGroceryItemOrder.Item => Item;
 
-        public WeighedGroceryItemOrder(IWeighedGroceryItem item, decimal weight)
+        public WeighedGroceryItemOrder(IGroceryItem<decimal> item, decimal weight)
         {
             this.Item = item;
             this.Weight = weight;

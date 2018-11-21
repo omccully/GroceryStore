@@ -31,7 +31,7 @@ namespace GroceryStore.Cart.OrderFactories
 
         public IGroceryItemOrder CreateOrder(IGroceryItem item)
         {
-            IEachesGroceryItem eachesItem = item as EachesGroceryItem;
+            EachesGroceryItem eachesItem = item as EachesGroceryItem;
 
             if (eachesItem == null)
                 throw new InvalidGroceryItemTypeException();
