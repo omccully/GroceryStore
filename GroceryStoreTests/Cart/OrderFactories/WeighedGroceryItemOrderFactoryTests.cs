@@ -59,7 +59,7 @@ namespace GroceryStoreTests.Cart.OrderFactories
             WeighedGroceryItem item = new WeighedGroceryItem("bananas", 2.38M);
 
             Mock<IWeightSelector> weightSelectorMock = new Mock<IWeightSelector>();
-            weightSelectorMock.Setup(ws => ws.SelectWeight()).Returns(9.2M);
+            weightSelectorMock.Setup(ws => ws.SelectWeight(item)).Returns(9.2M);
 
             WeighedGroceryItemOrderFactory factory =
                 new WeighedGroceryItemOrderFactory(weightSelectorMock.Object);

@@ -17,18 +17,19 @@ namespace GroceryStoreTests.Integration
         {
             decimal expectedWeight = 1.56M;
 
+            string itemName = "bananas";
+            WeighedGroceryItem bananas = new WeighedGroceryItem(itemName, 2.38M);
+
             Mock<IWeightSelector> weightSelectorMock = new Mock<IWeightSelector>();
-            weightSelectorMock.Setup((ws) => ws.SelectWeight()).Returns(expectedWeight);
+            weightSelectorMock.Setup((ws) => ws.SelectWeight(bananas)).Returns(expectedWeight);
 
             IGroceryItemOrderFactory orderFactory = new AggregateGroceryItemOrderFactory(
                     new EachesGroceryItemOrderFactory(),
                     new WeighedGroceryItemOrderFactory(weightSelectorMock.Object)
                 );
 
-            string itemName = "bananas";
-
             GroceryItemScanner scanner = new GroceryItemScanner(orderFactory);
-            scanner.Items.Add(new WeighedGroceryItem(itemName, 2.38M));
+            scanner.Items.Add(bananas);
 
             WeighedGroceryItemOrder bananaOrder = (WeighedGroceryItemOrder)scanner.CreateOrder(itemName);
 

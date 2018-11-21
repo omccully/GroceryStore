@@ -59,7 +59,7 @@ namespace GroceryStoreTests.Cart.OrderFactories
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
 
             Mock<ICountSelector> countSelectorMock = new Mock<ICountSelector>();
-            countSelectorMock.Setup(cs => cs.SelectCount()).Returns(9);
+            countSelectorMock.Setup(cs => cs.SelectCount(item)).Returns(9);
 
             EachesGroceryItemOrderFactory factory =
                 new EachesGroceryItemOrderFactory(countSelectorMock.Object);

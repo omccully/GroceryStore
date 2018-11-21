@@ -36,7 +36,7 @@ namespace GroceryStore.Cart.OrderFactories
             if (eachesItem == null)
                 throw new InvalidGroceryItemTypeException();
 
-            int count = CountSelector.SelectCount();
+            int count = CountSelector.SelectCount(eachesItem);
 
             return new EachesGroceryItemOrder(eachesItem, count);
         }

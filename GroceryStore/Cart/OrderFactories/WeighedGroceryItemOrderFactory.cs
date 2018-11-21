@@ -36,7 +36,7 @@ namespace GroceryStore.Cart.OrderFactories
             if (weighedItem == null)
                 throw new InvalidGroceryItemTypeException();
 
-            decimal weight = WeightSelector.SelectWeight();
+            decimal weight = WeightSelector.SelectWeight(weighedItem);
 
             return new WeighedGroceryItemOrder(weighedItem, weight);
         }

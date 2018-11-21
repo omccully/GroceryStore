@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GroceryStore.Stock;
 
 namespace GroceryStore.Cart.OrderFactories.CountSelectors
 {
@@ -15,7 +16,7 @@ namespace GroceryStore.Cart.OrderFactories.CountSelectors
             this.StaticCount = staticCount;
         }
 
-        public int SelectCount()
+        public int SelectCount(IGroceryItem<int> item)
         {
             return StaticCount;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryStore.Stock;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace GroceryStore.Cart.OrderFactories.CountSelectors
 {
     public interface ICountSelector
     {
-        int SelectCount();
+        int SelectCount(IGroceryItem<int> item);
     }
 }

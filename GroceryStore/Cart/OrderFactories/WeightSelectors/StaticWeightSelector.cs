@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GroceryStore.Stock;
 
 namespace GroceryStore.Cart.OrderFactories.WeightSelectors
 {
@@ -15,7 +16,7 @@ namespace GroceryStore.Cart.OrderFactories.WeightSelectors
             this.StaticWeight = staticWeight;
         }
 
-        public decimal SelectWeight()
+        public decimal SelectWeight(IGroceryItem<decimal> item)
         {
             return StaticWeight;
         }
