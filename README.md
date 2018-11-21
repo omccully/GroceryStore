@@ -1,5 +1,3 @@
-
-
 # Checkout Order Total Kata
 
 This library is designed to be unit-agnostic for both curreny and weight. Prices and weights are represented by the decimal data type to prevent rounding issues. 
@@ -75,6 +73,7 @@ bananas.Special =
 ```
 ## Putting it all together
 
+### Configuration
 ```csharp
 // setup the store's items 
 GroceryItemScanner scanner = new GroceryItemScanner();
@@ -98,12 +97,13 @@ scanner.OrderFactory = new AggregateGroceryItemOrderFactory(
         new WeighedGroceryItemOrderFactory(uiWeightSelector)
     );
 ```
+### Scanning items, removing items, and checking the total price
 ```csharp
 // creating a checkout cart 
 CheckoutCart cart = new CheckoutCart();
 
 // this call could prompt the cashier to weight the item 
-// (using the IWeightSelector injected into the GroceryItemScanner)
+// (using the IWeightSelector injected into the WeighedGroceryItemOrderFactory)
 IGroceryItemOrder bananaOrder = scanner.CreateOrder("Bananas");
 
 // add to cart
@@ -118,6 +118,7 @@ cart.Orders.Remove(bananaOrder);
 // check price without bananas
 decimal price = cart.TotalPrice;
 ```
+### Alternative way to scan items
 ```csharp 
 // bypassing the order creation factories
 // use this if the weight of the items are known ahead of time
