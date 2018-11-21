@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Specials.Weighed
 {
-    public class BuyNGetUpToMDiscountedWeighedGroceryItemSpecial : IWeighedGroceryItemSpecial
+    public class BuyNGetUpToMDiscountedWeighedGroceryItemSpecial : IGroceryItemSpecial<decimal>
     {
         decimal RequiredWeight;
         decimal DiscountPercentage;

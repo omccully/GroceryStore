@@ -7,7 +7,7 @@ using GroceryStore.Cart;
 
 namespace GroceryStore.Specials.Eaches
 {
-    public class BuyNForXEachesGroceryItemSpecial : IEachesGroceryItemSpecial
+    public class BuyNForXEachesGroceryItemSpecial : IGroceryItemSpecial<int>
     {
         int RequiredCount;
         decimal FixedPrice;

@@ -7,7 +7,7 @@ using GroceryStore.Cart;
 
 namespace GroceryStore.Specials.Eaches
 {
-    public class BuyNGetMDiscountedEachesGroceryItemSpecial : IEachesGroceryItemSpecial
+    public class BuyNGetMDiscountedEachesGroceryItemSpecial : IGroceryItemSpecial<int>
     {
         int RequiredCount, DiscountedCount;
         decimal DiscountPercentage;

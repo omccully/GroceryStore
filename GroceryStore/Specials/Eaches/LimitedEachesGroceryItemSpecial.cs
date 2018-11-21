@@ -7,12 +7,12 @@ using GroceryStore.Cart;
 
 namespace GroceryStore.Specials.Eaches
 {
-    public class LimitedEachesGroceryItemSpecial : IEachesGroceryItemSpecial
+    public class LimitedEachesGroceryItemSpecial : IGroceryItemSpecial<int>
     {
-        IEachesGroceryItemSpecial InnerSpecial;
+        IGroceryItemSpecial<int> InnerSpecial;
         int Limit;
 
-        public LimitedEachesGroceryItemSpecial(IEachesGroceryItemSpecial innerSpecial, int limit)
+        public LimitedEachesGroceryItemSpecial(IGroceryItemSpecial<int> innerSpecial, int limit)
         {
             this.InnerSpecial = innerSpecial;
             this.Limit = limit;

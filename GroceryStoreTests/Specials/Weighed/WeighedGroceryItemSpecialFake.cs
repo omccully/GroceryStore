@@ -1,4 +1,5 @@
-﻿using GroceryStore.Specials.Weighed;
+﻿using GroceryStore.Specials;
+using GroceryStore.Specials.Weighed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreTests.Specials.Weighed
 {
-    class WeighedGroceryItemSpecialFake : IWeighedGroceryItemSpecial
+    class WeighedGroceryItemSpecialFake : IGroceryItemSpecial<decimal>
     {
         decimal FixedPricePerUnit;
 

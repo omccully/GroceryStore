@@ -59,11 +59,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specials\Eaches\BuyNForXEachesGroceryItemSpecial.cs" />
     <Compile Include="Specials\Eaches\BuyNGetMDiscountedEachesGroceryItemSpecial.cs" />
-    <Compile Include="Specials\Eaches\IEachesGroceryItemSpecial.cs" />
     <Compile Include="Specials\Eaches\LimitedEachesGroceryItemSpecial.cs" />
     <Compile Include="Specials\IGroceryItemSpecial.cs" />
     <Compile Include="Specials\Weighed\BuyNGetUpToMDiscountedWeighedGroceryItemSpecial.cs" />
-    <Compile Include="Specials\Weighed\IWeighedGroceryItemSpecial.cs" />
     <Compile Include="Stock\GroceryItem.cs" />
     <Compile Include="Stock\Scanner\DuplicateGroceryItemException.cs" />
     <Compile Include="Stock\EachesGroceryItem.cs" />
