@@ -27,7 +27,7 @@ namespace GroceryStoreTests.Cart
 
         public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
         {
-            return new GroceryItemOrderFake(Price + otherOrder.Price);
+            return new GroceryItemOrderFake(Item, Price + otherOrder.Price);
         }
     }
 }
