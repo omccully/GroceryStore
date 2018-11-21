@@ -65,6 +65,7 @@
     <Compile Include="Cart\EachesGroceryItemOrderTests.cs" />
     <Compile Include="Cart\CheckoutCartTests.cs" />
     <Compile Include="Cart\GroceryItemOrderFake.cs" />
+    <Compile Include="Cart\GroceryItemOrderMultiplierFake.cs" />
     <Compile Include="Cart\OrderFactories\AggregateGroceryItemOrderFactoryTests.cs" />
     <Compile Include="Cart\OrderFactories\EachesGroceryItemOrderFactoryTests.cs" />
     <Compile Include="Cart\OrderFactories\WeighedGroceryItemOrderFactoryTests.cs" />

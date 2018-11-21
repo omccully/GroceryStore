@@ -35,13 +35,34 @@ namespace GroceryStoreTests.Cart
         }
 
         [TestMethod]
-        public void Price_CalculatesTotalPriceFromOrders()
+        public void TotalPrice_CalculatesTotalPriceFromOrders()
         {
             CheckoutCart cart = new CheckoutCart();
             cart.Orders.Add(new GroceryItemOrderFake(1.50M));
             cart.Orders.Add(new GroceryItemOrderFake(2.00M));
 
             Assert.AreEqual(3.50M, cart.TotalPrice);
+        }
+
+        [TestMethod]
+        public void TotalPrice_UsesCombinesOrders()
+        {
+            IGroceryItem itemA = new Mock<IGroceryItem>().Object;
+            IGroceryItem itemB = new Mock<IGroceryItem>().Object;
+
+            CheckoutCart cart = new CheckoutCart();
+            cart.Orders.Add(new GroceryItemOrderMultiplierFake(itemA, 2.00M));
+            cart.Orders.Add(new GroceryItemOrderMultiplierFake(itemB, 3.00M));
+            cart.Orders.Add(new GroceryItemOrderMultiplierFake(itemB, 3.00M));
+            cart.Orders.Add(new GroceryItemOrderMultiplierFake(itemB, 3.00M));
+            cart.Orders.Add(new GroceryItemOrderMultiplierFake(itemA, 2.00M));
+
+            // when the order fakes are combined, the prices should be multiplied
+            // A should be 2*2 = 4
+            // B should be 3*3*3 = 27
+            // 4 + 27 = 31
+
+            Assert.AreEqual(31.00M, cart.TotalPrice);
         }
 
         [TestMethod]

@@ -15,7 +15,7 @@ namespace GroceryStore.Cart
         {
             get
             {
-                return Orders.Sum(order => order.Price);
+                return OrdersCombinedByItem.Sum(order => order.Price);
             }
         }
 
