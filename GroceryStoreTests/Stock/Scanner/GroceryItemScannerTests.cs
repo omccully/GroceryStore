@@ -14,6 +14,19 @@ namespace GroceryStoreTests.Stock.Scanner
     public class GroceryItemScannerTests
     {
         [TestMethod]
+        public void Constructor_InitializesItems_WhenPassedGroceryItemEnumerable()
+        {
+            IEnumerable<IGroceryItem> items = new List<IGroceryItem>()
+            {
+                new WeighedGroceryItem("bananas", 2.38M)
+            };
+
+            GroceryItemScanner scanner = new GroceryItemScanner(items, null);
+
+            CollectionAssert.AreEquivalent(items.ToList(), scanner.Items.ToList());
+        }
+
+        [TestMethod]
         public void Items_CanAddEachesGroceryItem()
         {
             GroceryItemScanner scanner = new GroceryItemScanner(null);

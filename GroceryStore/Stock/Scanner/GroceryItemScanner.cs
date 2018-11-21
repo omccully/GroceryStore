@@ -23,6 +23,13 @@ namespace GroceryStore.Stock.Scanner
             Items = new List<IGroceryItem>();
         }
 
+        public GroceryItemScanner(IEnumerable<IGroceryItem> items, 
+            IGroceryItemOrderFactory orderFactory)
+        {
+            this.OrderFactory = orderFactory;
+            Items = new List<IGroceryItem>(items);
+        }
+
         public IGroceryItem Scan(string name)
         {
             IEnumerable<IGroceryItem> matches = Items.Where(item => item.Name == name);
