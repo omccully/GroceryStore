@@ -6,6 +6,7 @@ using GroceryStore.Stock;
 using GroceryStore.Cart;
 using GroceryStoreTests.Specials.Eaches;
 using GroceryStore.Cart.OrderFactories;
+using Moq;
 
 namespace GroceryStoreTests.Cart
 {
@@ -25,11 +26,13 @@ namespace GroceryStoreTests.Cart
         [TestMethod]
         public void Price_CalculatesUsingItemMethod()
         {
-            EachesGroceryItem item = new EachesGroceryItem("soup", 2.00M);
+            Mock<IGroceryItem<int>> itemMock = new Mock<IGroceryItem<int>>();
+            itemMock.Setup(item => item.CalculatePurchasePrice(It.IsAny<int>()))
+                .Returns((int count) => count * 1.00M);
 
-            EachesGroceryItemOrder order = new EachesGroceryItemOrder(item, 3);
+            EachesGroceryItemOrder order = new EachesGroceryItemOrder(itemMock.Object, 3);
 
-            Assert.AreEqual(6.00M, order.Price);
+            Assert.AreEqual(3.00M, order.Price);
         }
 
         [TestMethod]
