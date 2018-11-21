@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GroceryStore.Cart;
 using GroceryStore.Stock;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -97,6 +98,35 @@ namespace GroceryStoreTests.Cart
 
             Assert.ThrowsException<InvalidOperationException>(() =>
                cart.CombineOrdersForItem(unusedItem));
+        }
+
+        [TestMethod]
+        public void OrdersCombinedByItem_CombinesOrders()
+        {
+            IGroceryItem itemA = new Mock<IGroceryItem>().Object;
+            IGroceryItem itemB = new Mock<IGroceryItem>().Object;
+
+            CheckoutCart cart = new CheckoutCart();
+
+            cart.Orders.Add(new GroceryItemOrderFake(itemA, 1.50M));
+            cart.Orders.Add(new GroceryItemOrderFake(itemB, 2.00M));
+            cart.Orders.Add(new GroceryItemOrderFake(itemB, 2.50M));
+            cart.Orders.Add(new GroceryItemOrderFake(itemB, 2.00M));
+            cart.Orders.Add(new GroceryItemOrderFake(itemA, 3.50M));
+
+            Assert.AreEqual(2, cart.OrdersCombinedByItem.Count());
+
+            foreach(IGroceryItemOrder order in cart.OrdersCombinedByItem)
+            {
+                if(order.Item == itemA)
+                {
+                    Assert.AreEqual(5.00M, order.Price);
+                }
+                else if(order.Item == itemB)
+                {
+                    Assert.AreEqual(6.50M, order.Price);
+                }
+            }
         }
     }
 }
