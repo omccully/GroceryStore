@@ -12,12 +12,12 @@ namespace GroceryStoreTests.Cart
         [TestMethod]
         public void Constructor_SetsItemAndWeight()
         {
-            decimal weight = 1.6M;
+            decimal expectedWeight = 1.6M;
             WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.30M);
-            WeighedGroceryItemOrder order = new WeighedGroceryItemOrder(bananas, weight);
+            WeighedGroceryItemOrder order = new WeighedGroceryItemOrder(bananas, expectedWeight);
 
             Assert.AreEqual(bananas, order.Item);
-            Assert.AreEqual(weight, order.Weight);
+            Assert.AreEqual(expectedWeight, order.Weight);
         }
 
         [TestMethod]

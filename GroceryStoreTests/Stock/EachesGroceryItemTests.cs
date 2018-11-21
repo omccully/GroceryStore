@@ -12,29 +12,32 @@ namespace GroceryStoreTests.Stock
         [TestMethod]
         public void Constructor_SetsNameAndOriginalPrice()
         {
-            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
+            decimal expectedPrice = 1.89M;
+            EachesGroceryItem item = new EachesGroceryItem("soup", expectedPrice);
 
             Assert.AreEqual("soup", item.Name);
-            Assert.AreEqual(1.89M, item.OriginalPrice);
+            Assert.AreEqual(expectedPrice, item.OriginalPrice);
         }
 
         [TestMethod]
         public void PurchasePrice_GetsResultFromMarkdown()
         {
+            decimal expectedPrice = 1.50M;
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M)
             {
-                Markdown = new PriceMarkdownStub(1.50M)
+                Markdown = new PriceMarkdownStub(expectedPrice)
             };
 
-            Assert.AreEqual(1.50M, item.PurchasePrice);
+            Assert.AreEqual(expectedPrice, item.PurchasePrice);
         }
 
         [TestMethod]
         public void PurchasePrice_UsesOriginalPrice_WhenNoMarkdown()
         {
-            EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
+            decimal expectedPrice = 1.89M;
+            EachesGroceryItem item = new EachesGroceryItem("soup", expectedPrice);
 
-            Assert.AreEqual(1.89M, item.PurchasePrice);
+            Assert.AreEqual(expectedPrice, item.PurchasePrice);
         }
 
         [TestMethod]

@@ -109,8 +109,7 @@ namespace GroceryStoreTests.Stock.Scanner
         public void CreateOrder_CreatesOrderFromOrderFactory()
         {
             WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
-            
-
+           
             IGroceryItemOrder bananasOrder =
                 new WeighedGroceryItemOrder(bananas, 0.0M);
             Mock<IGroceryItemOrderFactory> orderFactoryMock =

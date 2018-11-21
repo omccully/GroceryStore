@@ -14,29 +14,32 @@ namespace GroceryStoreTests.Stock
         [TestMethod]
         public void Constructor_SetsNameAndOriginalPrice()
         {
-            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
+            decimal expectedPrice = 2.38M;
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", expectedPrice);
 
             Assert.AreEqual("bananas", bananas.Name);
-            Assert.AreEqual(2.38M, bananas.OriginalPrice);
+            Assert.AreEqual(expectedPrice, bananas.OriginalPrice);
         }
 
         [TestMethod]
         public void PurchasePrice_GetsResultFromMarkdown()
         {
+            decimal expectedPrice = 1.50M;
             WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M)
             {
-                Markdown = new PriceMarkdownStub(1.50M)
+                Markdown = new PriceMarkdownStub(expectedPrice)
             };
 
-            Assert.AreEqual(1.50M, bananas.PurchasePrice);
+            Assert.AreEqual(expectedPrice, bananas.PurchasePrice);
         }
         
         [TestMethod]
         public void PurchasePrice_UsesOriginalPrice_WhenNoMarkdown()
         {
-            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", 2.38M);
+            decimal expectedPrice = 2.38M;
+            WeighedGroceryItem bananas = new WeighedGroceryItem("bananas", expectedPrice);
 
-            Assert.AreEqual(2.38M, bananas.PurchasePrice);
+            Assert.AreEqual(expectedPrice, bananas.PurchasePrice);
         }
 
         [TestMethod]

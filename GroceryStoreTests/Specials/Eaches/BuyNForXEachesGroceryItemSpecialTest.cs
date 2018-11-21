@@ -12,10 +12,12 @@ namespace GroceryStoreTests.Specials.Eaches
         [TestMethod]
         public void CalculateNewCost_IsFixedPrice_WhenBuyingExactAmount()
         {
+            decimal expectedPrice = 5.00M;
+
             BuyNForXEachesGroceryItemSpecial special =
-                new BuyNForXEachesGroceryItemSpecial(3, 5.00M);
+                new BuyNForXEachesGroceryItemSpecial(3, expectedPrice);
                 
-            Assert.AreEqual(5.00M, special.CalculateNewPrice(1.89M, 3));
+            Assert.AreEqual(expectedPrice, special.CalculateNewPrice(1.89M, 3));
         }
 
         [TestMethod]

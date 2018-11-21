@@ -16,11 +16,12 @@ namespace GroceryStoreTests.Cart
         [TestMethod]
         public void Constructor_SetsItemAndCount()
         {
+            int expectedItemCount = 3;
             EachesGroceryItem item = new EachesGroceryItem("soup", 1.89M);
-            EachesGroceryItemOrder order = new EachesGroceryItemOrder(item, 3);
+            EachesGroceryItemOrder order = new EachesGroceryItemOrder(item, expectedItemCount);
 
             Assert.AreEqual(item, order.Item);
-            Assert.AreEqual(3, order.Count);
+            Assert.AreEqual(expectedItemCount, order.Count);
         }
 
         [TestMethod]
