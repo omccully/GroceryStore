@@ -12,14 +12,7 @@ namespace GroceryStore.Cart
     {
         public IGroceryItem<decimal> Item { get; private set; }
         public decimal Weight { get; set; }
-
-        public decimal Price
-        {
-            get
-            {
-                return Item.CalculatePurchasePrice(Weight);
-            }
-        }
+        public decimal Price => Item.CalculatePurchasePrice(Weight);
 
         IGroceryItem IGroceryItemOrder.Item => Item;
 
