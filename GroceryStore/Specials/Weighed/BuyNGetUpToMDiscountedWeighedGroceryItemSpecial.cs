@@ -24,7 +24,7 @@ namespace GroceryStore.Specials.Weighed
                CalculateDiscountedTotalPrice(pricePerUnit, itemWeight);
         }
 
-        public decimal CalculateNondiscountedTotalPrice(decimal pricePerUnit, decimal itemWeight)
+        decimal CalculateNondiscountedTotalPrice(decimal pricePerUnit, decimal itemWeight)
         {
             decimal nondiscountedWeight = CalculateNondiscountedWeight(itemWeight);
             return nondiscountedWeight * pricePerUnit;
@@ -37,12 +37,12 @@ namespace GroceryStore.Specials.Weighed
             return discountedWeight * discountedPrice;
         }
 
-        public decimal CalculateDiscountedWeight(decimal itemWeight)
+        decimal CalculateDiscountedWeight(decimal itemWeight)
         {
             return itemWeight - CalculateNondiscountedWeight(itemWeight);
         }
 
-        public decimal CalculateNondiscountedWeight(decimal itemWeight)
+        decimal CalculateNondiscountedWeight(decimal itemWeight)
         {
             decimal fullDealCount = Math.Floor(itemWeight / WeightPerFullDeal);
             decimal extraWeight = itemWeight - (fullDealCount * WeightPerFullDeal);
