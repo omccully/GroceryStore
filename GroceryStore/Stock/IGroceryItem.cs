@@ -19,10 +19,10 @@ namespace GroceryStore.Stock
         decimal PurchasePrice { get; }
     }
 
-    public interface IGroceryItem<TUnit> : IGroceryItem
+    public interface IGroceryItem<TQuantity> : IGroceryItem
     {
-        IGroceryItemSpecial<TUnit> Special { get; set; }
+        IGroceryItemSpecial<TQuantity> Special { get; set; }
 
-        decimal CalculatePurchasePrice(TUnit unitsOfItem);
+        decimal CalculatePurchasePrice(TQuantity unitsOfItem);
     }
 }

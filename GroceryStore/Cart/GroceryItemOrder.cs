@@ -7,17 +7,17 @@ using GroceryStore.Stock;
 
 namespace GroceryStore.Cart
 {
-    public abstract class GroceryItemOrder<TUnit> : IGroceryItemOrder<TUnit>
+    public abstract class GroceryItemOrder<TQuantity> : IGroceryItemOrder<TQuantity>
     {
-        public IGroceryItem<TUnit> Item { get; private set; }
+        public IGroceryItem<TQuantity> Item { get; private set; }
 
-        public TUnit Quantity { get; private set; }
+        public TQuantity Quantity { get; private set; }
 
         public decimal Price => Item.CalculatePurchasePrice(Quantity);
 
         IGroceryItem IGroceryItemOrder.Item => Item;
 
-        public GroceryItemOrder(IGroceryItem<TUnit> item, TUnit quantity)
+        public GroceryItemOrder(IGroceryItem<TQuantity> item, TQuantity quantity)
         {
             this.Item = item;
             this.Quantity = quantity;

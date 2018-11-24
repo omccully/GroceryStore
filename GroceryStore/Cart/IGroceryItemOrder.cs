@@ -14,9 +14,9 @@ namespace GroceryStore.Cart
         IGroceryItemOrder Combine(IGroceryItemOrder otherOrder);
     }
 
-    public interface IGroceryItemOrder<T> : IGroceryItemOrder
+    public interface IGroceryItemOrder<TQuantity> : IGroceryItemOrder
     {
-        new IGroceryItem<T> Item { get; }
-        T Quantity { get; }
+        new IGroceryItem<TQuantity> Item { get; }
+        TQuantity Quantity { get; }
     }
 }

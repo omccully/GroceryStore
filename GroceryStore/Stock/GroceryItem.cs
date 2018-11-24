@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Stock
 {
-    public abstract class GroceryItem<TUnit> : IGroceryItem<TUnit>
+    public abstract class GroceryItem<TQuantity> : IGroceryItem<TQuantity>
     {
         public string Name { get; private set; }
 
@@ -25,7 +25,7 @@ namespace GroceryStore.Stock
             }
         }
 
-        public IGroceryItemSpecial<TUnit> Special { get; set; }
+        public IGroceryItemSpecial<TQuantity> Special { get; set; }
 
         public GroceryItem(string name, decimal originalPrice)
         {
@@ -33,7 +33,7 @@ namespace GroceryStore.Stock
             this.OriginalPrice = originalPrice;
         }
 
-        public decimal CalculatePurchasePrice(TUnit unitsOfItem)
+        public decimal CalculatePurchasePrice(TQuantity unitsOfItem)
         {
             if (Special != null)
             {
