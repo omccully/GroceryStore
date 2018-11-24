@@ -8,21 +8,16 @@ using GroceryStore.Cart.OrderFactories;
 
 namespace GroceryStore.Cart
 {
-    public class EachesGroceryItemOrder : IGroceryItemOrder
+    public class EachesGroceryItemOrder : GroceryItemOrder<int>
     {
-        public IGroceryItem<int> Item { get; private set; }
-        public int Count { get; set; }
-        public decimal Price => Item.CalculatePurchasePrice(Count);
-
-        IGroceryItem IGroceryItemOrder.Item => Item;
+        public int Count => Quantity;
 
         public EachesGroceryItemOrder(IGroceryItem<int> item, int count = 1)
-        {
-            this.Item = item;
-            this.Count = count;
+            : base(item, count)
+        { 
         }
 
-        public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
+        public override IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
         {
             return Combine((EachesGroceryItemOrder)otherOrder);
         }

@@ -13,4 +13,10 @@ namespace GroceryStore.Cart
         decimal Price { get; }
         IGroceryItemOrder Combine(IGroceryItemOrder otherOrder);
     }
+
+    public interface IGroceryItemOrder<T> : IGroceryItemOrder
+    {
+        new IGroceryItem<T> Item { get; }
+        T Quantity { get; }
+    }
 }

@@ -8,21 +8,16 @@ using System.Threading.Tasks;
 
 namespace GroceryStore.Cart
 {
-    public class WeighedGroceryItemOrder : IGroceryItemOrder
+    public class WeighedGroceryItemOrder : GroceryItemOrder<decimal>
     {
-        public IGroceryItem<decimal> Item { get; private set; }
-        public decimal Weight { get; set; }
-        public decimal Price => Item.CalculatePurchasePrice(Weight);
-
-        IGroceryItem IGroceryItemOrder.Item => Item;
+        public decimal Weight => Quantity;
 
         public WeighedGroceryItemOrder(IGroceryItem<decimal> item, decimal weight)
+            : base(item, weight)
         {
-            this.Item = item;
-            this.Weight = weight;
         }
 
-        public IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
+        public override IGroceryItemOrder Combine(IGroceryItemOrder otherOrder)
         {
             return Combine((WeighedGroceryItemOrder)otherOrder);
         }
